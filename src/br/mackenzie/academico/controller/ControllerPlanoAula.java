@@ -23,8 +23,8 @@ public class ControllerPlanoAula {
     }
 
     public void criaPlanoAula(String calendarioLetivo, String oferecimento, String planejamentoAula, String bibliografiaBasica, String bibliografiaComplementar, String ementa, String conceitos, String conteudoProgramatico, String criteriosAvaliacao, String habilidades, String metodologia, String valores) {
-        PlanoAula novoPlanoAula = new PlanoAula(calendarioLetivo, oferecimento, planejamentoAula,bibliografiaBasica, bibliografiaComplementar, ementa, conceitos, conteudoProgramatico, criteriosAvaliacao, habilidades, metodologia, valores);
-        iplanoaula.criaPlanoAula(novoPlanoAula);
+        //PlanoAula novoPlanoAula = new PlanoAula(calendarioLetivo, oferecimento, planejamentoAula,bibliografiaBasica, bibliografiaComplementar, ementa, conceitos, conteudoProgramatico, criteriosAvaliacao, habilidades, metodologia, valores);
+        //iplanoaula.criaPlanoAula(novoPlanoAula);
     }
 
     public List<PlanoAula> listaPlanosAulas() {

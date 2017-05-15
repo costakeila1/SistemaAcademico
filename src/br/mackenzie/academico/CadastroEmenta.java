@@ -3,10 +3,6 @@ package br.mackenzie.academico;
 
 import br.mackenzie.academico.controller.ControllerEmenta;
 import br.mackenzie.academico.dominio.Ementa;
-<<<<<<< HEAD
-=======
-import br.mackenzie.academico.modelo.Modelo;
->>>>>>> 0f0e1d0453575a29ec3168df2f61ac8400cbd7ea
 import br.mackenzie.academico.utils.Menu;
 import java.util.List;
 
@@ -17,12 +13,9 @@ public class CadastroEmenta {
         "_/_/     Menu Principal",
         "_/_/     (1) Adicionar nova Ementa.",
         "_/_/     (2) Listar Ementas cadastradas.",
-<<<<<<< HEAD
         "_/_/     (3) Remover ementa do cadastro.",
-=======
         "_/_/     (3) Atualizar Ementa.",
         "_/_/     (4) Remover ementa do cadastro.",
->>>>>>> 0f0e1d0453575a29ec3168df2f61ac8400cbd7ea
         "_/_/     (0) Sai da ementa.",
         "_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/"
     };

@@ -3,10 +3,6 @@ package br.mackenzie.academico;
 
 import br.mackenzie.academico.controller.ControllerMatricula;
 import br.mackenzie.academico.dominio.Matricula;
-<<<<<<< HEAD
-=======
-import br.mackenzie.academico.modelo.Modelo;
->>>>>>> 0f0e1d0453575a29ec3168df2f61ac8400cbd7ea
 import br.mackenzie.academico.utils.Menu;
 import java.util.List;
 
@@ -88,8 +84,4 @@ public class CadastroMatricula {
             }
         }
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 0f0e1d0453575a29ec3168df2f61ac8400cbd7ea

@@ -1,14 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+//[315.31.89-1] Keila Lopes Costa
 package br.mackenzie.academico.controller;
 
-/**
- *
- * @author gabriel domenicali
- */
+import br.mackenzie.academico.dominio.ProjetoPedagogico;
+import java.util.List;
+
 public class ControllerProjetoPedagogico {
-    
+
+    public void criaProjetoPedagogico(String strNome, String strCodigo, String strPeriodo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public List<ProjetoPedagogico> listaProjetosPedagogicos() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public ProjetoPedagogico recuperaProjetoPedagogico(String strCodigo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

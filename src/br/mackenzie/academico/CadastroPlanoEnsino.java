@@ -3,12 +3,10 @@ package br.mackenzie.academico;
 
 import br.mackenzie.academico.controller.ControllerOferecimento;
 import br.mackenzie.academico.dominio.Oferecimento;
-<<<<<<< HEAD
-=======
-import br.mackenzie.academico.modelo.Modelo;
->>>>>>> 0f0e1d0453575a29ec3168df2f61ac8400cbd7ea
 import br.mackenzie.academico.utils.Menu;
 import java.util.List;
+
+
 
 public class CadastroPlanoEnsino {
 
@@ -31,7 +29,7 @@ public class CadastroPlanoEnsino {
         while (runMenuPrincipal) {
             menu.mostraMenu(CadastroPlanoEnsino.menuPrincipal);
             String str = menu.readInput("Sua escolha:");
-            switch (str) {
+            /*switch (str) {
                 case "1": {
                     System.out.println("Inclusao de registro");
                     String strCodigoTurma = menu.readInput("Entre com o codigo da turma:");
@@ -41,7 +39,7 @@ public class CadastroPlanoEnsino {
                     break;
                 }
                 case "2":
-                    System.out.println("Lista Oferecimento");
+                    System.out.println("Lista Planos de Ensino");
                     List<Oferecimento> oferecimentos = controllerOferecimento.listaOferecimentos();
                     for (Oferecimento o : oferecimentos) {
                         System.out.println(o.getComponenteCurricular().getCodigo() + ":" + o.getTurma().getCodigo() + ":" + o.getInformacoesAdicionais());
@@ -80,7 +78,7 @@ public class CadastroPlanoEnsino {
                 default:
                     System.out.println("Entrada Invalida");
                     break;
-            }
+            }*/
         }
     }
 }

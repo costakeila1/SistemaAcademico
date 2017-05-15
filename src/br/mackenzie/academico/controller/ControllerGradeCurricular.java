@@ -24,10 +24,10 @@ public class ControllerGradeCurricular {
     }
 
     public void criaGradeCurricular(String strProjetoPedagogico, String strInformacoes) {
-         ProjetoPedagogico p = Modelo.getInstance().recuperaProjetoPedagogico();
-         GradeCurricular novaGradeCurricular= new GradeCurricular(p);
-         novaGradeCurricular.setInformacoes(strInformacoes);
-         igrade.criaGradeCurricular(novaGradeCurricular);
+         //ProjetoPedagogico p = Modelo.getInstance().recuperaProjetoPedagogico();
+         //GradeCurricular novaGradeCurricular= new GradeCurricular(p);
+        // novaGradeCurricular.setInformacoes(strInformacoes);
+         //igrade.criaGradeCurricular(novaGradeCurricular);
     }
 
     public List<GradeCurricular> listaGradesCurriculares() {
