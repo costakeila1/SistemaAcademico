@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JavaFX</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+    <style type="text/css">
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      .pull-left {
+        float: left;
+        width: 47%;
+      }
+      .pull-right {
+        float: right;
+        width: 47%;
+      }
+      .pull-right ~ p {
+        clear: both;
+      }     
+
+table.gridtable {
+	font-family: verdana,arial,sans-serif;
+	font-size:11px;
+	color:#333333;
+	border-width: 1px;
+	border-color: #666666;
+	border-collapse: collapse;
+}
+table.gridtable th {
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #666666;
+	background-color: #dedede;
+}
+table.gridtable td {
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #666666;
+	background-color: #ffffff;
+}
+
+@page {
+  size: 908px 681px;
+  margin: 0;
+}
+
+@media print {
+  .remark-slide-scaler {
+    width: 100% !important;
+    height: 100% !important;
+    transform: scale(1) !important;
+    top: 0 !important;
+    left: 0 !important;
+  }
+}
+  </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle
+background-image: url(img/bg-mack.png)
+<p>
+	<small>Universidade Presbiteriana Mackenzie</small><br/>
+	<small>Faculdade de Computação e Informática</small><br/>
+</p>
+<h2>JavaFX</h2>
+<h3>Introdução</h3>
+
+<p>
+	<small>Programação de Sistemas II</small><br/>
+	<small>1º semestre de 2017</small><br/>
+	<small>Prof. Fabio K. Takase</small><br/>
+	<small>Versão 1.0</small>
+</p>
+
+---
+class: middle
+## Objetivos
+
+- Criar formulários em JavaFX para a aplicação desenvolvida no laboratório.
+- Exercitar conceitos desenvolvidos na teoria.
+
+---
+class: middle
+## Referência
+
+Tutorias da Oracle sobre JavaFX
+
+https://docs.oracle.com/javase/8/javafx/get-started-tutorial/get_start_apps.htm#JFXST804
+
+
+---
+class: middle
+### Ferramentas utilizadas
+
+- Java JDK JDK1.8 (Inclui o JavaFx 8).
+- Netbeans 8.2.0.
+
+---
+class: middle
+### Estruturação do projeto
+
+- Abrir o projeto do Sistema Acadêmico.
+
+- Criar um pacote chamado **br.mackenzie.academico.view**
+---
+## **Pacote de view**
+
+Criar um pacote chamado **br.mackenzie.academico.view**.
+
+![](screenshots/0001.png)
+
+---
+## **Pacote de view**
+
+
+![](screenshots/0002.png)
+
+---
+
+## **Pacote de view**
+
+![](screenshots/0003.png)
+
+---
+
+class: middle
+### Construção do formulário
+
+- Criação do formulário utilizando o SceneBuilder (arquivos FXML).
+
+---
+## Formulário
+
+Selecionar novo ->outros.
+
+![](screenshots/0004.png)
+
+---
+## Formulário
+
+Em categorias, selecionar JavaFX.
+
+![](screenshots/0005.png)
+
+---
+## Formulário
+
+Em tipos de arquivos, selecionar FXML Vazio.
+
+![](screenshots/0006.png)
+
+---
+## Formulário
+
+Clique em próximo e dê um nome para seu formulário (FormularioPrincipal).
+
+![](screenshots/0007.png)
+
+---
+## Formulário
+
+Clique em próximo - não iremos criar um controller automaticamente.
+
+![](screenshots/0008.png)
+
+---
+## Formulário
+
+Clique em finalizar - não iremos utilizar um arquivo de folha de estilo (CSS).
+
+![](screenshots/0009.png)
+
+---
+## Formulário
+
+O arquivo ***FormularioPrincipal.fxml*** foi criado no pacote de view.
+
+![](screenshots/0010.png)
+
+---
+## Configuração do SceneBuilder
+
+- Copiar os arquivo ***SceneBuilder.zip*** para a pasta **C:\Temp**.
+- Descompactar o arquivo.
+
+---
+## Configuração do SceneBuilder
+
+Selecionar Ferramentas->Opções.
+
+![](screenshots/0011.png)
+
+---
+## Configuração do SceneBuilder
+
+Selecionar Java e em seguida a aba JavaFX.
+
+![](screenshots/0012.png)
+
+
+---
+## Configuração do SceneBuilder
+
+Apontar para o diretório de instalação do SceneBuilder e clicar em ok.
+
+![](screenshots/0013.png)
+
+---
+## Edição do arquivo FXML
+
+- Selecionar o arquivo FXML, clicar com o botão da direita e selecionar ***abrir***.
+
+![](screenshots/0014.png)
+
+---
+## Edição do arquivo FXML
+
+- O editor de FXML deve abrir.
+
+![](screenshots/0015.png)
+
+---
+## Edição do arquivo FXML
+
+- No lado esquerdo, na seção Hierarchy, selecionar o AnchorPane.
+- Remover o AnchorPane.
+- Selecionar na seção Containers, BorderLayout e arrastar até o formulário no centro (Drag Library Itens Here).
+---
+class: center, middle
+background-image: url(screenshots/0016.png)
+
+---
+class: center, middle
+background-image: url(screenshots/0018.png)
+
+---
+class: center, middle
+background-image: url(screenshots/0019.png)
+
+---
+class: center, middle
+background-image: url(screenshots/0020.png)
+
+---
+class: center, middle
+background-image: url(screenshots/0021.png)
+
+---
+## Edição do arquivo FXML
+
+- No lado esquerdo, na seção Controls, selecionar o MenuBar.
+- Arrastar e largar na área superior do formulário.
+---
+class: center, middle
+background-image: url(screenshots/0022.png)
+
+---
+class: center, middle
+background-image: url(screenshots/0023.png)
+
+---
+## Edição do arquivo FXML
+
+- Salvar as alterações: File->Save.
+---
+class: center, middle
+background-image: url(screenshots/0024.png)
+
+
+---
+## Edição do arquivo FXML
+
+- Retorne ao Netbeans (não é necessário fechar o SceneBuilder).
+- Note que o arquivo fxml foi atualizado.
+
+---
+class: center, middle
+background-image: url(screenshots/0025.png)
+
+
+
+
+
+---
+class: center, middle
+background-image: url(img/bg-mack.png)
+## Obrigado!
+    </textarea>
+    <script src="js/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>
+
