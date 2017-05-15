@@ -43,7 +43,7 @@ public class CadastroEmenta {
                     List<Ementa> ementas = controllerEmenta.listaEmentas();
                     for (Ementa e : ementas) {
                         System.out.println(e.getCodigo());
-                        System.out.println(e.getDescrição());
+                        System.out.println(e.getDescriçãoEmenta());
                         System.out.println(e.getBibliografiaBasica());
                         System.out.println(e.getBibliografiaComplementar());
                     }
@@ -53,12 +53,11 @@ public class CadastroEmenta {
                     String strCodigo = menu.readInput("Entre com o codigo da ementa:");
                     Ementa e = controllerEmenta.recuperaEmenta(strCodigo);
                     if (e != null) {
-                        System.out.println(e.getCodigo() + ":" + e.getDescrição());
+                        System.out.println(e.getCodigo() + ":" + e.getDescriçãoEmenta());
                         String strConf = menu.readInput("Deseja realmente remover a ementa do cadastro (S/N):");
                         if (strConf.equals("S")) {
                             controllerEmenta.removeEmenta(strCodigo);
                         }
-
                     }
                     break;
                 }

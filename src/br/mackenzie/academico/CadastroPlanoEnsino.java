@@ -1,12 +1,10 @@
 //[315.31.89-1] Keila Lopes Costa 
 package br.mackenzie.academico;
 
-import br.mackenzie.academico.controller.ControllerOferecimento;
-import br.mackenzie.academico.dominio.Oferecimento;
+import br.mackenzie.academico.controller.ControllerPlanoEnsino;
+import br.mackenzie.academico.dominio.PlanoEnsino;
 import br.mackenzie.academico.utils.Menu;
 import java.util.List;
-
-
 
 public class CadastroPlanoEnsino {
 
@@ -15,7 +13,7 @@ public class CadastroPlanoEnsino {
         "_/_/     Menu Principal",
         "_/_/     (1) Adicionar novo plano de ensino.",
         "_/_/     (2) Listar planos de ensino cadastradas.",
-        "_/_/     (3) Alterar plano de ensino cadastrado.",
+        "_/_/     (3) Atualizar Plano de Ensino.",
         "_/_/     (4) Remover plano de ensino do cadastro.",
         "_/_/     (0) Sai do plano de ensino.",
         "_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/"
@@ -24,51 +22,64 @@ public class CadastroPlanoEnsino {
     public static void menu() {
         Menu menu = new Menu();
         boolean runMenuPrincipal = true;
-        ControllerOferecimento controllerOferecimento = new ControllerOferecimento();
+
+        ControllerPlanoEnsino controllerPlanoEnsino = new ControllerPlanoEnsino();
 
         while (runMenuPrincipal) {
             menu.mostraMenu(CadastroPlanoEnsino.menuPrincipal);
             String str = menu.readInput("Sua escolha:");
-            /*switch (str) {
+            switch (str) {
                 case "1": {
                     System.out.println("Inclusao de registro");
-                    String strCodigoTurma = menu.readInput("Entre com o codigo da turma:");
-                    String strCodigoComponente = menu.readInput("Entre com o codigo do componente curricular:");
-                    String strInformacaoAdicional = menu.readInput("Entre com informacoes adicionais:");
-                    controllerOferecimento.criaOferecimento(strCodigoTurma, strCodigoComponente, strInformacaoAdicional);
+                    String descriçãoEmenta = menu.readInput("Entre com a descrição da ementa:");
+                    String bBasica = menu.readInput("Entre com a bibliografia básica:");
+                    String bComplementar = menu.readInput("Entre com a bibliografia complementar:");
+                    String conceitos = menu.readInput("Entre com os conceitos do plano de ensino:");
+                    String conteudoProgramatico = menu.readInput("Entre com o conteúdo programático:");
+                    String criteriosAvaliacao = menu.readInput("Entre com os critérios de avaliação:");
+                    String habilidades = menu.readInput("Entre com as habilidades:");
+                    String metodologia = menu.readInput("Entre com a metogolodia:");
+                    String valores = menu.readInput("Entre com os valores:");
+                    controllerPlanoEnsino.criaPlanoEnsino(descriçãoEmenta, bBasica, bComplementar, conceitos, conteudoProgramatico, criteriosAvaliacao, habilidades, metodologia, valores);
                     break;
                 }
                 case "2":
                     System.out.println("Lista Planos de Ensino");
-                    List<Oferecimento> oferecimentos = controllerOferecimento.listaOferecimentos();
-                    for (Oferecimento o : oferecimentos) {
-                        System.out.println(o.getComponenteCurricular().getCodigo() + ":" + o.getTurma().getCodigo() + ":" + o.getInformacoesAdicionais());
+                    List<PlanoEnsino> planosEnsino = controllerPlanoEnsino.listaPlanosEnsino();
+                    for (PlanoEnsino pe : planosEnsino) {
+                        System.out.println(pe.getConceitos() + " : " + pe.getMetodologia());
                     }
                     break;
                 case "3": {
                     System.out.println("Atualiza");
-                    String strCodigoTurma = menu.readInput("Entre com o codigo da turma:");
-                    String strCodigoComponente = menu.readInput("Entre com o codigo do componente curricular:");
-                    Oferecimento o = controllerOferecimento.recuperaOferecimento(strCodigoTurma, strCodigoComponente);
-                    if (o != null) {
-                        String strInfoAdicional = menu.readInput("Entre com informacoes adicionais [" + o.getInformacoesAdicionais() + "]:");
-                        o.setInformacoesAdicionais(strInfoAdicional);
-                        controllerOferecimento.atualizaOferecimento(o);
+                    String codigoEmenta = menu.readInput("Entre com o código da Ementa:");
+                    PlanoEnsino pe = controllerPlanoEnsino.recuperaPlanoEnsino(codigoEmenta);
+                    if (pe != null) {
+                        String conceitos = menu.readInput("Entre com os conceitos do plano de ensino:");
+                        String conteudoProgramatico = menu.readInput("Entre com o conteúdo programático:");
+                        String criteriosAvaliacao = menu.readInput("Entre com os critérios de avaliação:");
+                        String habilidades = menu.readInput("Entre com as habilidades:");
+                        String metodologia = menu.readInput("Entre com a metogolodia:");
+                        String valores = menu.readInput("Entre com os valores:");
+                        pe.setConceitos(conceitos);
+                        pe.setConteudoProgramatico(conteudoProgramatico);
+                        pe.setCriteriosAvaliacao(criteriosAvaliacao);
+                        pe.setHabilidades(habilidades);
+                        pe.setMetodologia(metodologia);
+                        pe.setValores(valores);
+                        controllerPlanoEnsino.atualizaPlanoEnsino(pe);
                     }
                     break;
                 }
                 case "4": {
                     System.out.println("Remove");
-                    String strCodigoTurma = menu.readInput("Entre com o codigo da turma:");
-                    String strCodigoComponente = menu.readInput("Entre com o codigo do componente curricular:");
-                    Oferecimento o = controllerOferecimento.recuperaOferecimento(strCodigoTurma, strCodigoComponente);
-                    if (o != null) {
-                        System.out.println(o.getTurma().getCodigo() + ":" + o.getComponenteCurricular().getCodigo());
-                        String strConf = menu.readInput("Deseja realmente remover o oferecimento do cadastro (S/N):");
+                    String codigoEmenta = menu.readInput("Entre com o código da Ementa:");
+                    PlanoEnsino pe = controllerPlanoEnsino.recuperaPlanoEnsino(codigoEmenta);
+                    if (pe != null) {
+                        String strConf = menu.readInput("Deseja realmente remover o plano de ensino do cadastro (S/N):");
                         if (strConf.equals("S")) {
-                            controllerOferecimento.removeOferecimento(o);
+                            controllerPlanoEnsino.removePlanoEnsino(pe);
                         }
-
                     }
                     break;
                 }
@@ -78,7 +89,7 @@ public class CadastroPlanoEnsino {
                 default:
                     System.out.println("Entrada Invalida");
                     break;
-            }*/
+            }
         }
     }
 }

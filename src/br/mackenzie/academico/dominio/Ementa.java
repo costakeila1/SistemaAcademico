@@ -6,15 +6,15 @@ import java.io.Serializable;
 public class Ementa implements Serializable {
 
     private String codigo;
-    private String descrição;
+    private String descriçãoEmenta;
     private String bibliografiaBasica;
     private String bibliografiaComplementar;
     
 
-    public Ementa(String bibliografiaBasica, String bibliografiaComplementar, String descrição) {
+    public Ementa(String bibliografiaBasica, String bibliografiaComplementar, String descriçãoEmenta) {
         this.bibliografiaBasica = bibliografiaBasica;
         this.bibliografiaComplementar = bibliografiaComplementar;
-        this.descrição = descrição;
+        this.descriçãoEmenta = descriçãoEmenta;
     }
 
     public String getBibliografiaBasica() {
@@ -25,8 +25,8 @@ public class Ementa implements Serializable {
         return bibliografiaComplementar;
     }
 
-    public String getDescrição() {
-        return descrição;
+    public String getDescriçãoEmenta() {
+        return descriçãoEmenta;
     }
 
     public String getCodigo() {

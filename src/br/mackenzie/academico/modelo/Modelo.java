@@ -2,12 +2,19 @@
 package br.mackenzie.academico.modelo;
 
 import br.mackenzie.academico.dominio.Aluno;
+import br.mackenzie.academico.dominio.CalendarioLetivo;
 import br.mackenzie.academico.dominio.ComponenteCurricular;
 import br.mackenzie.academico.dominio.Curso;
 import br.mackenzie.academico.dominio.Ementa;
 import br.mackenzie.academico.dominio.Faculdade;
+import br.mackenzie.academico.dominio.GradeCurricular;
 import br.mackenzie.academico.dominio.Matricula;
 import br.mackenzie.academico.dominio.Oferecimento;
+import br.mackenzie.academico.dominio.PlanoAula;
+import br.mackenzie.academico.dominio.PlanoEnsino;
+import br.mackenzie.academico.dominio.Professor;
+import br.mackenzie.academico.dominio.ProjetoPedagogico;
+import br.mackenzie.academico.dominio.SemestreLetivo;
 import br.mackenzie.academico.dominio.Turma;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -20,24 +27,37 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Modelo implements InterfaceAluno,
+public class Modelo implements
+        InterfaceAluno,
+        //InterfaceCalendarioLetivo,
         InterfaceComponenteCurricular,
         InterfaceConsulta,
         InterfaceCurso,
         InterfaceEmenta,
         InterfaceFaculdade,
+        //InterfaceGradeCurricular  
         InterfaceMatricula,
         InterfaceOferecimento,
+        //InterfacePlanoAula,
+        InterfacePlanoEnsino,
         InterfaceTurma {
 
-    private List<Faculdade> faculdades;
-    private List<Curso> cursos;
-    private List<Turma> turmas;
-    private List<ComponenteCurricular> componentes;
-    private List<Oferecimento> oferecimentos;
     private List<Aluno> alunos;
-    private List<Matricula> matriculas;
+    private List<CalendarioLetivo> calendarios;
+    private List<ComponenteCurricular> componentes;
+    private List<Curso> cursos;
     private List<Ementa> ementas;
+    private List<Faculdade> faculdades;
+    private List<GradeCurricular> grades;
+    private List<Matricula> matriculas;
+    private List<Oferecimento> oferecimentos;
+    private List<PlanoAula> planosAula;
+    private List<PlanoEnsino> planosEnsino;
+    private List<Professor> professores;
+    private List<ProjetoPedagogico> projetos;
+    private List<SemestreLetivo> semestres;
+    private List<Turma> turmas;
+
     private static Modelo instanciaUnica;
 
     public static Modelo getInstance() {
@@ -101,7 +121,7 @@ public class Modelo implements InterfaceAluno,
             fis.close();
 
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
         return list;
     }
@@ -481,6 +501,53 @@ public class Modelo implements InterfaceAluno,
             if (e.getCodigo().equals(codigo)) {
                 ementas.remove(e);
                 break;
+            }
+        }
+    }
+
+    //MANUPILANDO PLANOS DE ENSINO
+    @Override
+    public void criaPlanoEnsino(PlanoEnsino novoPlanoEnsino) {
+        if (planosEnsino == null) {
+            planosEnsino = new ArrayList<>();
+        }
+        planosEnsino.add(novoPlanoEnsino);
+    }
+
+    @Override
+    public List<PlanoEnsino> listaPlanos() {
+        return planosEnsino;
+    }
+
+    @Override
+    public PlanoEnsino recuperaPlanoEnsino(String codigoEmenta) {
+        for (PlanoEnsino pe : planosEnsino) {
+            if (pe.getCodigo().equals(codigoEmenta)) {
+                return pe;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public void atualizaPlanoEnsino(PlanoEnsino planoEnsino) {
+        for (PlanoEnsino pe : planosEnsino) {
+            if (pe.getCodigo().equals(planoEnsino.getCodigo())) {
+                pe.setConceitos(planoEnsino.getConceitos());
+                pe.setConteudoProgramatico(planoEnsino.getConteudoProgramatico());
+                pe.setCriteriosAvaliacao(planoEnsino.getCriteriosAvaliacao());
+                pe.setHabilidades(planoEnsino.getHabilidades());
+                pe.setMetodologia(planoEnsino.getMetodologia());
+                pe.setValores(planoEnsino.getValores());
+            }
+        }
+    }
+
+    @Override
+    public void removePlanoEnsino(PlanoEnsino planoEnsino) {
+        for (PlanoEnsino pe : planosEnsino) {
+            if (pe.getCodigo().equals(planoEnsino.getCodigo())) {
+                planosEnsino.remove(pe);
             }
         }
     }

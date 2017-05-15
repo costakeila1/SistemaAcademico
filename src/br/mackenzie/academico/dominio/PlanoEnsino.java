@@ -1,16 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+//[315.31.89-1] Keila Lopes Costa 
 package br.mackenzie.academico.dominio;
 
 import java.io.Serializable;
 
-/**
- *
- * @author gabriel domenicali
- */
 public class PlanoEnsino extends Ementa implements Serializable{
     
     private String conceitos;
@@ -20,8 +12,16 @@ public class PlanoEnsino extends Ementa implements Serializable{
     private String metodologia;
     private String valores;
     
-    public PlanoEnsino(String bibliografiaBasica, String bibliografiaComplementar, String ementa, String conceitos, String conteudoProgramatico, String criteriosAvaliacao, String habilidades, String metodologia, String valores) {
-        super(bibliografiaBasica, bibliografiaComplementar, ementa);
+    public PlanoEnsino(String bibliografiaBasica, 
+                       String bibliografiaComplementar, 
+                       String descriçãoEmenta, 
+                       String conceitos, 
+                       String conteudoProgramatico, 
+                       String criteriosAvaliacao, 
+                       String habilidades, 
+                       String metodologia, 
+                       String valores) {
+        super(bibliografiaBasica, bibliografiaComplementar, descriçãoEmenta);
         this.conceitos = conceitos;
         this.conteudoProgramatico = conteudoProgramatico;
         this.criteriosAvaliacao = criteriosAvaliacao;

@@ -3,11 +3,6 @@ package br.mackenzie.academico;
 
 import br.mackenzie.academico.controller.ControllerOferecimento;
 import br.mackenzie.academico.dominio.Oferecimento;
-import br.mackenzie.academico.controller.ControllerOferecimento;
-import br.mackenzie.academico.controller.ControllerTurma;
-import br.mackenzie.academico.dominio.Oferecimento;
-import br.mackenzie.academico.dominio.Turma;
-import br.mackenzie.academico.modelo.Modelo;
 import br.mackenzie.academico.utils.Menu;
 import java.util.List;
 
@@ -77,7 +72,6 @@ public class CadastroOferecimento {
                     }
                     break;
                 }
-
                 case "0":
                     runMenuPrincipal = false;
                     break;
