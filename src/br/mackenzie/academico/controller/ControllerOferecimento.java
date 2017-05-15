@@ -4,6 +4,7 @@ package br.mackenzie.academico.controller;
 import br.mackenzie.academico.dominio.ComponenteCurricular;
 import br.mackenzie.academico.dominio.Oferecimento;
 import br.mackenzie.academico.dominio.Turma;
+import br.mackenzie.academico.excecao.ComponenteCurricularNaoEncontradoException;
 import br.mackenzie.academico.modelo.InterfaceOferecimento;
 import br.mackenzie.academico.modelo.Modelo;
 import java.util.List;
@@ -16,7 +17,7 @@ public class ControllerOferecimento {
         ioferecimento = (InterfaceOferecimento) Modelo.getInstance();
     }
     
-    public void criaOferecimento(String strCodigoTurma, String strCodigoComponente, String strInformacaoAdicional){
+    public void criaOferecimento(String strCodigoTurma, String strCodigoComponente, String strInformacaoAdicional) throws ComponenteCurricularNaoEncontradoException{
          Turma t = ioferecimento.recuperaTurma(strCodigoTurma);
          ComponenteCurricular c = ioferecimento.recuperaComponenteCurricular(strCodigoComponente);
          Oferecimento novoOferecimento= new Oferecimento(t,c);

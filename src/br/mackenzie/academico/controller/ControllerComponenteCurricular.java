@@ -3,6 +3,7 @@ package br.mackenzie.academico.controller;
 
 import br.mackenzie.academico.dominio.ComponenteCurricular;
 import br.mackenzie.academico.dominio.Ementa;
+import br.mackenzie.academico.excecao.ComponenteCurricularNaoEncontradoException;
 import br.mackenzie.academico.modelo.InterfaceComponenteCurricular;
 import br.mackenzie.academico.modelo.Modelo;
 import java.util.List;
@@ -27,7 +28,7 @@ public class ControllerComponenteCurricular {
         return iComponente.listaComponentesCurriculares();
     }
 
-    public ComponenteCurricular recuperaComponenteCurricular(String codigo) {
+    public ComponenteCurricular recuperaComponenteCurricular(String codigo) throws ComponenteCurricularNaoEncontradoException{
         return iComponente.recuperaComponenteCurricular(codigo);
     }
 

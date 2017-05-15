@@ -3,6 +3,7 @@ package br.mackenzie.academico;
 
 import br.mackenzie.academico.controller.ControllerOferecimento;
 import br.mackenzie.academico.dominio.Oferecimento;
+import br.mackenzie.academico.excecao.ComponenteCurricularNaoEncontradoException;
 import br.mackenzie.academico.utils.Menu;
 import java.util.List;
 
@@ -35,7 +36,11 @@ public class CadastroOferecimento {
                     String strCodigoTurma = menu.readInput("Entre com o codigo da turma:");
                     String strCodigoComponente = menu.readInput("Entre com o codigo do componente curricular:");
                     String strInformacaoAdicional = menu.readInput("Entre com informacoes adicionais:");
-                    controllerOferecimento.criaOferecimento(strCodigoTurma, strCodigoComponente, strInformacaoAdicional);
+                    try {
+                        controllerOferecimento.criaOferecimento(strCodigoTurma, strCodigoComponente, strInformacaoAdicional);
+                    } catch (ComponenteCurricularNaoEncontradoException ex) {
+                        System.out.println("Componente curricular não foi encontrado com o código:" + strCodigoComponente);
+                    }
                     break;
                 }
                 case "2":

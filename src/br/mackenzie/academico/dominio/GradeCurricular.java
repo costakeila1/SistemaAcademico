@@ -1,8 +1,7 @@
+//[315.31.89-1] Keila Lopes Costa 
 package br.mackenzie.academico.dominio;
 
-import java.io.Serializable;
-
-public class GradeCurricular implements Serializable {
+public class GradeCurricular implements java.io.Serializable {
 
     private ProjetoPedagogico projetoPedagogico;
     private String informacoes;

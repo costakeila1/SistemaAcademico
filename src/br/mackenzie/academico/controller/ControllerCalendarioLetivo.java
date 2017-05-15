@@ -1,20 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+//[315.31.89-1] Keila Lopes Costa 
 package br.mackenzie.academico.controller;
 
-import br.mackenzie.academico.CadastroCalendarioLetivo;
 import br.mackenzie.academico.dominio.CalendarioLetivo;
+import br.mackenzie.academico.excecao.CalendarioNaoEncontradoException;
 import br.mackenzie.academico.modelo.InterfaceCalendarioLetivo;
 import br.mackenzie.academico.modelo.Modelo;
 import java.util.List;
 
-/**
- *
- * @author gabriel domenicali
- */
 public class ControllerCalendarioLetivo {
     
     private InterfaceCalendarioLetivo icalendario;
@@ -23,8 +15,8 @@ public class ControllerCalendarioLetivo {
         icalendario = (InterfaceCalendarioLetivo) Modelo.getInstance();
     }
 
-    public void criaCalendario(String strEventos, String strFeriados) {
-        CalendarioLetivo novoCalendarioLetivo = new CalendarioLetivo(strEventos,strFeriados);
+    public void criaCalendario(int ano, int semestre, String strEventos, String strFeriados) {
+        CalendarioLetivo novoCalendarioLetivo = new CalendarioLetivo(ano, semestre, strEventos,strFeriados);
         icalendario.criaCalendarioLetivo(novoCalendarioLetivo);
     }
 
@@ -33,8 +25,8 @@ public class ControllerCalendarioLetivo {
     }
 
 
-    public CalendarioLetivo recuperaCalendarioLetivo(String eventos) {
-        return icalendario.recuperaCalendarioLetivo(eventos);
+    public CalendarioLetivo recuperaCalendario(String ano, String semestre) throws CalendarioNaoEncontradoException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public void removeCalendarioLetivo(CalendarioLetivo cl) {
@@ -44,6 +36,8 @@ public class ControllerCalendarioLetivo {
     public void atualizaCalendarioLetivo(CalendarioLetivo cl) {
         icalendario.atualizaCalendarioLetivo(cl);
     }
+
+    
 
 
     

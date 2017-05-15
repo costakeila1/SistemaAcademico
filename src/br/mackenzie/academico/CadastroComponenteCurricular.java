@@ -3,6 +3,7 @@ package br.mackenzie.academico;
 
 import br.mackenzie.academico.controller.ControllerComponenteCurricular;
 import br.mackenzie.academico.dominio.ComponenteCurricular;
+import br.mackenzie.academico.excecao.ComponenteCurricularNaoEncontradoException;
 import br.mackenzie.academico.utils.Menu;
 import java.util.List;
 
@@ -46,7 +47,12 @@ public class CadastroComponenteCurricular {
                 case "3": {
                     System.out.println("Atualiza");
                     String strCodigo = menu.readInput("Entre com o Codigo do Componente Curricular:");
-                    ComponenteCurricular c = controllerComponenteCurricular.recuperaComponenteCurricular(strCodigo);
+                    ComponenteCurricular c = null;
+                    try {
+                        c = controllerComponenteCurricular.recuperaComponenteCurricular(strCodigo);
+                    } catch (ComponenteCurricularNaoEncontradoException ex) {
+                        System.out.println("Componente curricular não foi encontrado com o código:" + strCodigo);
+                    }
                     if (c != null) {
                         String strNome = menu.readInput("Entre com o novo nome [" + c.getNome() + "]:");
                         String codEmenta = menu.readInput("Entre com o codigo da nova ementa: ");
@@ -57,7 +63,12 @@ public class CadastroComponenteCurricular {
                 case "4": {
                     System.out.println("Remove");
                     String strCodigo = menu.readInput("Entre com o Codigo do Componente Curricular:");
-                    ComponenteCurricular c = controllerComponenteCurricular.recuperaComponenteCurricular(strCodigo);
+                    ComponenteCurricular c = null;
+                    try {
+                        c = controllerComponenteCurricular.recuperaComponenteCurricular(strCodigo);
+                    } catch (ComponenteCurricularNaoEncontradoException ex) {
+                        System.out.println("Componente curricular não foi encontrado com o código:" + strCodigo);
+                    }
                     if (c != null) {
                         System.out.println(c.getCodigo() + ":" + c.getNome());
                         String strConf = menu.readInput("Deseja realmente remover o componente do cadastro (S/N):");

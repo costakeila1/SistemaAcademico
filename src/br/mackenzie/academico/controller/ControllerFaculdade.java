@@ -2,15 +2,16 @@
 package br.mackenzie.academico.controller;
 
 import br.mackenzie.academico.dominio.Faculdade;
+import br.mackenzie.academico.excecao.FaculdadeNaoEncontradaException;
 import br.mackenzie.academico.modelo.InterfaceFaculdade;
 import br.mackenzie.academico.modelo.Modelo;
 import java.util.List;
 
 public class ControllerFaculdade {
-    
+
     private InterfaceFaculdade ifaculdade;
-    
-    public ControllerFaculdade(){
+
+    public ControllerFaculdade() {
         ifaculdade = (InterfaceFaculdade) Modelo.getInstance();
     }
 
@@ -23,7 +24,7 @@ public class ControllerFaculdade {
         return ifaculdade.listaFaculdades();
     }
 
-    public Faculdade recuperaFaculdade(String cpnj) {
+    public Faculdade recuperaFaculdade(String cpnj) throws FaculdadeNaoEncontradaException {
         return ifaculdade.recuperaFaculdade(cpnj);
     }
 

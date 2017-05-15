@@ -16,6 +16,10 @@ import br.mackenzie.academico.dominio.Professor;
 import br.mackenzie.academico.dominio.ProjetoPedagogico;
 import br.mackenzie.academico.dominio.SemestreLetivo;
 import br.mackenzie.academico.dominio.Turma;
+import br.mackenzie.academico.excecao.AlunoNaoEncontradoException;
+import br.mackenzie.academico.excecao.CalendarioNaoEncontradoException;
+import br.mackenzie.academico.excecao.ComponenteCurricularNaoEncontradoException;
+import br.mackenzie.academico.excecao.FaculdadeNaoEncontradaException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -29,7 +33,7 @@ import java.util.logging.Logger;
 
 public class Modelo implements
         InterfaceAluno,
-        //InterfaceCalendarioLetivo,
+        InterfaceCalendarioLetivo,
         InterfaceComponenteCurricular,
         InterfaceConsulta,
         InterfaceCurso,
@@ -40,6 +44,7 @@ public class Modelo implements
         InterfaceOferecimento,
         //InterfacePlanoAula,
         InterfacePlanoEnsino,
+        InterfaceSemestreLetivo,
         InterfaceTurma {
 
     private List<Aluno> alunos;
@@ -69,30 +74,52 @@ public class Modelo implements
 
     public void persisteDados() {
 
-        if (faculdades != null) {
-            persiste(faculdades, Faculdade.class);
+        if (alunos != null) {
+            persiste(alunos, Aluno.class);
         }
-        if (cursos != null) {
-            persiste(cursos, Curso.class);
-        }
-        if (turmas != null) {
-            persiste(turmas, Turma.class);
+        if (calendarios != null) {
+            persiste(calendarios, CalendarioLetivo.class);
         }
         if (componentes != null) {
             persiste(componentes, ComponenteCurricular.class);
         }
-        if (oferecimentos != null) {
-            persiste(oferecimentos, Oferecimento.class);
-        }
-        if (alunos != null) {
-            persiste(alunos, Aluno.class);
-        }
-        if (matriculas != null) {
-            persiste(matriculas, Matricula.class);
+        if (cursos != null) {
+            persiste(cursos, Curso.class);
         }
         if (ementas != null) {
             persiste(ementas, Ementa.class);
         }
+        if (faculdades != null) {
+            persiste(faculdades, Faculdade.class);
+        }
+        //if (grades != null) {
+        //    persiste(grades, GradeCurricular.class);
+        //}
+        if (matriculas != null) {
+            persiste(matriculas, Matricula.class);
+        }
+        if (oferecimentos != null) {
+            persiste(oferecimentos, Oferecimento.class);
+        }
+        //if (planosAula != null) {
+        //    persiste(planosAula, PlanosAula.class);
+        //}
+        if (planosEnsino != null) {
+            persiste(planosEnsino, PlanoEnsino.class);
+        }
+        if (professores != null) {
+            persiste(professores, Professor.class);
+        }
+        if (projetos != null) {
+            persiste(projetos, ProjetoPedagogico.class);
+        }
+        if (semestres != null) {
+            persiste(semestres, SemestreLetivo.class);
+        }
+        if (turmas != null) {
+            persiste(turmas, Turma.class);
+        }
+
     }
 
     public void carregaDados() {
@@ -142,46 +169,119 @@ public class Modelo implements
         }
     }
 
-    // MANIPULANDO FACULDADES
+    
+    // MANIPULANDO ALUNOS
     @Override
-    public void criaFaculdade(Faculdade faculdade) {
-        if (faculdades == null) {
-            faculdades = new ArrayList<>();
+    public void criaAluno(Aluno novoAluno) {
+        if (alunos == null) {
+            alunos = new ArrayList<>();
         }
-        faculdades.add(faculdade);
+        alunos.add(novoAluno);
     }
 
     @Override
-    public List<Faculdade> listaFaculdades() {
-        return faculdades;
+    public List<Aluno> listaAlunos() {
+        return alunos;
     }
 
     @Override
-    public Faculdade recuperaFaculdade(String cnpj) {
-        for (Faculdade f : faculdades) {
-            if (f.getCNPJ().trim().equals(cnpj.trim())) {
-                return f;
+    public Aluno recuperaAluno(String tia) throws AlunoNaoEncontradoException {
+        for (Aluno a : alunos) {
+            if (a.getTIA().trim().equals(tia.trim())) {
+                return a;
+            }
+        }
+        throw new AlunoNaoEncontradoException();
+    }
+
+    @Override
+    public void atualizaAluno(Aluno aluno) {
+        for (Aluno a : alunos) {
+            if (a.getTIA().trim().equals(aluno.getTIA().trim())) {
+                a.setNome(aluno.getNome());
+            }
+        }
+    }
+
+    @Override
+    public void removeAluno(Aluno aluno) {
+        for (Aluno a : alunos) {
+            if (a.getTIA().trim().equals(aluno.getTIA().trim())) {
+                cursos.remove(a);
+                break;
+            }
+        }
+    }
+
+    //MANIPULANDO CALENDÁRIOS LETIVOS
+    @Override
+    public void criaCalendarioLetivo(CalendarioLetivo novoCalendarioLetivo) {
+        if (calendarios == null) {
+            calendarios = new ArrayList<>();
+        }
+        calendarios.add(novoCalendarioLetivo);
+    }
+
+    @Override
+    public List<CalendarioLetivo> listaCalendariosLetivos() {
+        return calendarios;
+    }
+
+    @Override
+    public CalendarioLetivo recuperaCalendarioLetivo(String eventos) throws CalendarioNaoEncontradoException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void removeCalendarioLetivo(CalendarioLetivo cl) {
+        for (CalendarioLetivo c : calendarios) {
+            //(cl.getrted yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+    }
+
+    @Override
+    public void atualizaCalendarioLetivo(CalendarioLetivo cl) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    // MANIPULANDO COMPONENTES CURRICULARES
+    @Override
+    public void criaComponenteCurricular(ComponenteCurricular componente) {
+        if (componentes == null) {
+            componentes = new ArrayList<>();
+        }
+        componentes.add(componente);
+    }
+
+    @Override
+    public List<ComponenteCurricular> listaComponentesCurriculares() {
+        return componentes;
+    }
+
+    @Override
+    public ComponenteCurricular recuperaComponenteCurricular(String codigo) throws ComponenteCurricularNaoEncontradoException {
+        for (ComponenteCurricular c : componentes) {
+            if (c.getCodigo().trim().equals(codigo.trim())) {
+                return c;
             }
         }
         return null;
     }
 
     @Override
-    public void atualizaFaculdade(Faculdade faculdade) {
-        for (Faculdade f : faculdades) {
-            if (f.getCNPJ().trim().equals(faculdade.getCNPJ().trim())) {
-                f.setEndereco(faculdade.getEndereco());
-                f.setNome(faculdade.getNome());
-                f.setTelefone(faculdade.getTelefone());
+    public void atualizaComponenteCurricular(ComponenteCurricular componente) {
+        for (ComponenteCurricular c : componentes) {
+            if (c.getCodigo().trim().equals(componente.getCodigo().trim())) {
+                c.setNome(componente.getNome());
             }
         }
     }
 
     @Override
-    public void removeFaculdade(Faculdade faculdade) {
-        for (Faculdade f : faculdades) {
-            if (f.getCNPJ().trim().equals(faculdade.getCNPJ().trim())) {
-                faculdades.remove(f);
+    public void removeComponenteCurricular(ComponenteCurricular componente) {
+        for (ComponenteCurricular c : componentes) {
+            if (c.getCodigo().trim().equals(componente.getCodigo().trim())) {
+                componentes.remove(c);
                 break;
             }
         }
@@ -230,187 +330,80 @@ public class Modelo implements
         }
     }
 
-    // MANIPULANDO TURMAS
+    //MANIPULANDO EMENTAS
     @Override
-    public void criaTurma(Turma turma) {
-        if (turmas == null) {
-            turmas = new ArrayList<>();
+    public void criaEmenta(Ementa novaEmenta) {
+        if (ementas == null) {
+            ementas = new ArrayList<>();
         }
-        turmas.add(turma);
+        ementas.add(novaEmenta);
     }
 
     @Override
-    public List<Turma> listaTurmas() {
-        return turmas;
+    public List<Ementa> listaEmentas() {
+        return ementas;
     }
 
     @Override
-    public Turma recuperaTurma(String codigo) {
-        for (Turma t : turmas) {
-            if (t.getCodigo().trim().equals(codigo.trim())) {
-                return t;
+    public Ementa recuperaEmenta(String codigo) {
+        for (Ementa e : ementas) {
+            if (e.getCodigo().equals(codigo)) {
+                return e;
             }
         }
         return null;
     }
 
     @Override
-    public void atualizaTurma(Turma turma) {
-        for (Turma t : turmas) {
-            if (t.getCodigo().trim().equals(turma.getCodigo().trim())) {
-                t.setPeriodoDeIngresso(turma.getPeriodoDeIngresso());
-            }
-        }
-    }
-
-    @Override
-    public void removeTurma(Turma turma) {
-        for (Turma t : turmas) {
-            if (t.getCodigo().trim().equals(turma.getCodigo().trim())) {
-                turmas.remove(t);
+    public void removeEmenta(String codigo) {
+        for (Ementa e : ementas) {
+            if (e.getCodigo().equals(codigo)) {
+                ementas.remove(e);
                 break;
             }
         }
     }
 
-    // MANIPULANDO COMPONENTES CURRICULARES
+    // MANIPULANDO FACULDADES
     @Override
-    public void criaComponenteCurricular(ComponenteCurricular componente) {
-        if (componentes == null) {
-            componentes = new ArrayList<>();
+    public void criaFaculdade(Faculdade faculdade) {
+        if (faculdades == null) {
+            faculdades = new ArrayList<>();
         }
-        componentes.add(componente);
+        faculdades.add(faculdade);
     }
 
     @Override
-    public List<ComponenteCurricular> listaComponentesCurriculares() {
-        return componentes;
+    public List<Faculdade> listaFaculdades() {
+        return faculdades;
     }
 
     @Override
-    public ComponenteCurricular recuperaComponenteCurricular(String codigo) {
-        for (ComponenteCurricular c : componentes) {
-            if (c.getCodigo().trim().equals(codigo.trim())) {
-                return c;
+    public Faculdade recuperaFaculdade(String cnpj) throws FaculdadeNaoEncontradaException {
+        for (Faculdade f : faculdades) {
+            if (f.getCNPJ().trim().equals(cnpj.trim())) {
+                return f;
             }
         }
-        return null;
+        throw new FaculdadeNaoEncontradaException();
     }
 
     @Override
-    public void atualizaComponenteCurricular(ComponenteCurricular componente) {
-        for (ComponenteCurricular c : componentes) {
-            if (c.getCodigo().trim().equals(componente.getCodigo().trim())) {
-                c.setNome(componente.getNome());
-            }
-        }
-    }
-
-    @Override
-    public void removeComponenteCurricular(ComponenteCurricular componente) {
-        for (ComponenteCurricular c : componentes) {
-            if (c.getCodigo().trim().equals(componente.getCodigo().trim())) {
-                componentes.remove(c);
-                break;
-            }
-        }
-    }
-
-    // MANIPULANDO OFERECIMENTOS
-    @Override
-    public void criaOferecimento(Oferecimento oferecimento) {
-        if (oferecimentos == null) {
-            oferecimentos = new ArrayList<Oferecimento>();
-        }
-        oferecimentos.add(oferecimento);
-    }
-
-    @Override
-    public List<Oferecimento> listaOferecimentos() {
-        return oferecimentos;
-    }
-
-    @Override
-    public List<Oferecimento> buscaOferecimentosTurma(String codigo_turma) {
-        List<Oferecimento> oferecimentosTurma = new ArrayList<>();
-        for (Oferecimento o : oferecimentos) {
-            if ((o.getTurma().getCodigo().trim().equals(codigo_turma.trim()))) {
-                oferecimentosTurma.add(o);
-            }
-        }
-        return oferecimentosTurma;
-    }
-
-    @Override
-    public Oferecimento recuperaOferecimento(String codigoTurma, String codigoComponenteCurricular) {
-        for (Oferecimento o : oferecimentos) {
-            if ((o.getTurma().getCodigo().trim().equals(codigoTurma.trim()))
-                    && (o.getComponenteCurricular().getCodigo().trim().equals(codigoComponenteCurricular.trim()))) {
-                return o;
-            }
-        }
-        return null;
-    }
-
-    @Override
-    public void atualizaOferecimento(Oferecimento oferecimento) {
-        for (Oferecimento o : oferecimentos) {
-            if ((o.getTurma().getCodigo().trim().equals(oferecimento.getTurma().getCodigo().trim()))
-                    && (o.getComponenteCurricular().getCodigo().trim().equals(oferecimento.getComponenteCurricular().getCodigo().trim()))) {
-                o.setInformacoesAdicionais(oferecimento.getInformacoesAdicionais());
+    public void atualizaFaculdade(Faculdade faculdade) {
+        for (Faculdade f : faculdades) {
+            if (f.getCNPJ().trim().equals(faculdade.getCNPJ().trim())) {
+                f.setEndereco(faculdade.getEndereco());
+                f.setNome(faculdade.getNome());
+                f.setTelefone(faculdade.getTelefone());
             }
         }
     }
 
     @Override
-    public void removeOferecimento(Oferecimento oferecimento) {
-        for (Oferecimento o : oferecimentos) {
-            if ((o.getTurma().getCodigo().trim().equals(oferecimento.getTurma().getCodigo().trim()))
-                    && (o.getComponenteCurricular().getCodigo().trim().equals(oferecimento.getComponenteCurricular().getCodigo().trim()))) {
-                oferecimentos.remove(o);
-                break;
-            }
-        }
-    }
-
-    // MANIPULANDO ALUNOS
-    @Override
-    public void criaAluno(Aluno novoAluno) {
-        if (alunos == null) {
-            alunos = new ArrayList<>();
-        }
-        alunos.add(novoAluno);
-    }
-
-    @Override
-    public List<Aluno> listaAlunos() {
-        return alunos;
-    }
-
-    @Override
-    public Aluno recuperaAluno(String tia) {
-        for (Aluno a : alunos) {
-            if (a.getTIA().trim().equals(tia.trim())) {
-                return a;
-            }
-        }
-        return null;
-    }
-
-    @Override
-    public void atualizaAluno(Aluno aluno) {
-        for (Aluno a : alunos) {
-            if (a.getTIA().trim().equals(aluno.getTIA().trim())) {
-                a.setNome(aluno.getNome());
-            }
-        }
-    }
-
-    @Override
-    public void removeAluno(Aluno aluno) {
-        for (Aluno a : alunos) {
-            if (a.getTIA().trim().equals(aluno.getTIA().trim())) {
-                cursos.remove(a);
+    public void removeFaculdade(Faculdade faculdade) {
+        for (Faculdade f : faculdades) {
+            if (f.getCNPJ().trim().equals(faculdade.getCNPJ().trim())) {
+                faculdades.remove(f);
                 break;
             }
         }
@@ -471,35 +464,101 @@ public class Modelo implements
         return matriculasAluno;
     }
 
-    //MANIPULANDO EMENTAS
+    // MANIPULANDO OFERECIMENTOS
     @Override
-    public void criaEmenta(Ementa novaEmenta) {
-        if (ementas == null) {
-            ementas = new ArrayList<>();
+    public void criaOferecimento(Oferecimento oferecimento) {
+        if (oferecimentos == null) {
+            oferecimentos = new ArrayList<Oferecimento>();
         }
-        ementas.add(novaEmenta);
+        oferecimentos.add(oferecimento);
     }
 
     @Override
-    public List<Ementa> listaEmentas() {
-        return ementas;
+    public List<Oferecimento> listaOferecimentos() {
+        return oferecimentos;
     }
 
     @Override
-    public Ementa recuperaEmenta(String codigo) {
-        for (Ementa e : ementas) {
-            if (e.getCodigo().equals(codigo)) {
-                return e;
+    public List<Oferecimento> buscaOferecimentosTurma(String codigo_turma) {
+        List<Oferecimento> oferecimentosTurma = new ArrayList<>();
+        for (Oferecimento o : oferecimentos) {
+            if ((o.getTurma().getCodigo().trim().equals(codigo_turma.trim()))) {
+                oferecimentosTurma.add(o);
+            }
+        }
+        return oferecimentosTurma;
+    }
+
+    @Override
+    public Oferecimento recuperaOferecimento(String codigoTurma, String codigoComponenteCurricular) {
+        for (Oferecimento o : oferecimentos) {
+            if ((o.getTurma().getCodigo().trim().equals(codigoTurma.trim()))
+                    && (o.getComponenteCurricular().getCodigo().trim().equals(codigoComponenteCurricular.trim()))) {
+                return o;
             }
         }
         return null;
     }
 
     @Override
-    public void removeEmenta(String codigo) {
-        for (Ementa e : ementas) {
-            if (e.getCodigo().equals(codigo)) {
-                ementas.remove(e);
+    public void atualizaOferecimento(Oferecimento oferecimento) {
+        for (Oferecimento o : oferecimentos) {
+            if ((o.getTurma().getCodigo().trim().equals(oferecimento.getTurma().getCodigo().trim()))
+                    && (o.getComponenteCurricular().getCodigo().trim().equals(oferecimento.getComponenteCurricular().getCodigo().trim()))) {
+                o.setInformacoesAdicionais(oferecimento.getInformacoesAdicionais());
+            }
+        }
+    }
+
+    @Override
+    public void removeOferecimento(Oferecimento oferecimento) {
+        for (Oferecimento o : oferecimentos) {
+            if ((o.getTurma().getCodigo().trim().equals(oferecimento.getTurma().getCodigo().trim()))
+                    && (o.getComponenteCurricular().getCodigo().trim().equals(oferecimento.getComponenteCurricular().getCodigo().trim()))) {
+                oferecimentos.remove(o);
+                break;
+            }
+        }
+    }
+
+    // MANIPULANDO TURMAS
+    @Override
+    public void criaTurma(Turma turma) {
+        if (turmas == null) {
+            turmas = new ArrayList<>();
+        }
+        turmas.add(turma);
+    }
+
+    @Override
+    public List<Turma> listaTurmas() {
+        return turmas;
+    }
+
+    @Override
+    public Turma recuperaTurma(String codigo) {
+        for (Turma t : turmas) {
+            if (t.getCodigo().trim().equals(codigo.trim())) {
+                return t;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public void atualizaTurma(Turma turma) {
+        for (Turma t : turmas) {
+            if (t.getCodigo().trim().equals(turma.getCodigo().trim())) {
+                t.setPeriodoDeIngresso(turma.getPeriodoDeIngresso());
+            }
+        }
+    }
+
+    @Override
+    public void removeTurma(Turma turma) {
+        for (Turma t : turmas) {
+            if (t.getCodigo().trim().equals(turma.getCodigo().trim())) {
+                turmas.remove(t);
                 break;
             }
         }
@@ -550,5 +609,39 @@ public class Modelo implements
                 planosEnsino.remove(pe);
             }
         }
+    }
+
+    //MANIPULANDO SEMESTRES LETIVOS
+    @Override
+    public void criaSemestreLetivo(SemestreLetivo novoSemestre) {
+        if (semestres == null) {
+            semestres = new ArrayList<>();
+        }
+        semestres.add(novoSemestre);
+    }
+
+    @Override
+    public List<SemestreLetivo> listaSemestresLetivos() {
+        return semestres;
+    }
+
+    @Override
+    public SemestreLetivo recuperaSemestreLetivo(int ano, int semestre) {
+        for (SemestreLetivo s : semestres) {
+            if (s.getAno() == ano && s.getSemestre() == semestre) {
+                return s;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public void atualizaSemestreLetivo(int ano, int semestre) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void removeSemestreLetivo(SemestreLetivo s) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

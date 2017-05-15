@@ -4,6 +4,7 @@ package br.mackenzie.academico.modelo;
 import br.mackenzie.academico.dominio.Aluno;
 import br.mackenzie.academico.dominio.Matricula;
 import br.mackenzie.academico.dominio.Oferecimento;
+import br.mackenzie.academico.excecao.AlunoNaoEncontradoException;
 import java.util.List;
 
 public interface InterfaceMatricula {
@@ -18,7 +19,7 @@ public interface InterfaceMatricula {
 
     public void removeMatricula(Matricula m);
 
-    public Aluno recuperaAluno(String tia);
+    public Aluno recuperaAluno(String tia) throws AlunoNaoEncontradoException;
 
     public void criaMatricula(Matricula matricula);
     

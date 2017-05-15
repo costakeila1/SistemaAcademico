@@ -1,9 +1,7 @@
 //[315.31.89-1] Keila Lopes Costa 
 package br.mackenzie.academico.dominio;
 
-import java.io.Serializable;
-
-public class ComponenteCurricular implements Serializable {
+public class ComponenteCurricular implements java.io.Serializable {
 
     private String codigo;
     private String nome;

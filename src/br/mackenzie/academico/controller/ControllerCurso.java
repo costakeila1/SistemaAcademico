@@ -2,6 +2,7 @@
 package br.mackenzie.academico.controller;
 
 import br.mackenzie.academico.dominio.Curso;
+import br.mackenzie.academico.excecao.FaculdadeNaoEncontradaException;
 import br.mackenzie.academico.modelo.InterfaceCurso;
 import br.mackenzie.academico.modelo.Modelo;
 import java.util.List;
@@ -14,7 +15,7 @@ public class ControllerCurso {
         icurso = (InterfaceCurso) Modelo.getInstance();
     }
 
-    public void criaCurso(String strCnpj, String strNome) {
+    public void criaCurso(String strCnpj, String strNome) throws FaculdadeNaoEncontradaException {
         Curso novoCurso = new Curso(icurso.recuperaFaculdade(strCnpj));
         novoCurso.setNome(strNome);
         icurso.criaCurso(novoCurso);

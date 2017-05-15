@@ -3,6 +3,7 @@ package br.mackenzie.academico.modelo;
 
 import br.mackenzie.academico.dominio.Aluno;
 import br.mackenzie.academico.dominio.Turma;
+import br.mackenzie.academico.excecao.AlunoNaoEncontradoException;
 import java.util.List;
 
 public interface InterfaceAluno {
@@ -13,7 +14,7 @@ public interface InterfaceAluno {
 
     public List<Aluno> listaAlunos();
 
-    public Aluno recuperaAluno(String tia);
+    public Aluno recuperaAluno(String tia) throws AlunoNaoEncontradoException;
 
     public void atualizaAluno(Aluno aluno);
 

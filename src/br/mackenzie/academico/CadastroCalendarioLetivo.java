@@ -3,6 +3,7 @@ package br.mackenzie.academico;
 
 import br.mackenzie.academico.dominio.CalendarioLetivo;
 import br.mackenzie.academico.controller.ControllerCalendarioLetivo;
+import br.mackenzie.academico.excecao.CalendarioNaoEncontradoException;
 import br.mackenzie.academico.utils.Menu;
 import java.util.List;
 
@@ -31,9 +32,11 @@ public class CadastroCalendarioLetivo {
 
                 case "1": {
                     System.out.println("Inclusao de registro");
+                    int ano = Integer.parseInt(menu.readInput("Entre com o ano:"));
+                    int semestre = Integer.parseInt(menu.readInput("Entre com o semestre:"));
                     String strEventos = menu.readInput("Entre com os Eventos do Calendário:");
                     String strFeriados = menu.readInput("Entre com os Feriados do Calendário:");
-                    controllerCalendarioLetivo.criaCalendario(strEventos, strFeriados);
+                    controllerCalendarioLetivo.criaCalendario(ano, semestre, strEventos, strFeriados);
                     break;
                 }
                 case "2":
@@ -45,11 +48,17 @@ public class CadastroCalendarioLetivo {
                     break;
                 case "3": {
                     System.out.println("Atualiza");
-                    String strEventos = menu.readInput("Entre com o Evento do Calendário:");
+                    String ano = menu.readInput("Entre com o ano levito:");
+                    String semestre = menu.readInput("Entre com o semestre letivo:");
                     CalendarioLetivo cl = null;
+                    try {
+                        cl = controllerCalendarioLetivo.recuperaCalendario(ano, semestre);
+                    } catch (CalendarioNaoEncontradoException ex) {
+                        System.out.println("O caléndário para o ano " + ano + "/" + semestre + "não foi encontrado!");
+                    }
                     if (cl != null) {
-                        String streventos = menu.readInput("Entre com os novos evento [" + cl.getEventos() + "]:");
-                        String strferiados = menu.readInput("Entre com os novos feriado [" + cl.getFeriados() + "]:");
+                        String streventos = menu.readInput("Entre com os novos eventos [" + cl.getEventos() + "]:");
+                        String strferiados = menu.readInput("Entre com os novos feriados [" + cl.getFeriados() + "]:");
                         cl.setEventos(streventos);
                         cl.setFeriados(strferiados);
                         controllerCalendarioLetivo.atualizaCalendarioLetivo(cl);
@@ -58,8 +67,14 @@ public class CadastroCalendarioLetivo {
                 }
                 case "4": {
                     System.out.println("Remove");
-                    String strEventos = menu.readInput("Entre com os Eventos do Calendário:");
-                    CalendarioLetivo cl = controllerCalendarioLetivo.recuperaCalendarioLetivo(strEventos);
+                    String ano = menu.readInput("Entre com o ano levito:");
+                    String semestre = menu.readInput("Entre com o semestre letivo:");
+                    CalendarioLetivo cl = null;
+                    try {
+                        cl = controllerCalendarioLetivo.recuperaCalendario(ano, semestre);
+                    } catch (CalendarioNaoEncontradoException ex) {
+                        System.out.println("O caléndário para o ano " + ano + "/" + semestre + "não foi encontrado!");
+                    }
                     if (cl != null) {
                         System.out.println(cl.getEventos());
                         String strConf = menu.readInput("Deseja realmente remover a faculdade do cadastro (S/N):");

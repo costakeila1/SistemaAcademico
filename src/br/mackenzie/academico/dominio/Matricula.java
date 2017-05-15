@@ -1,9 +1,7 @@
 //[315.31.89-1] Keila Lopes Costa 
 package br.mackenzie.academico.dominio;
 
-import java.io.Serializable;
-
-public class Matricula implements Serializable {
+public class Matricula implements java.io.Serializable {
 
     private float mediaFinal;
     private String status;

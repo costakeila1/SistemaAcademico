@@ -6,6 +6,7 @@
 package br.mackenzie.academico.modelo;
 
 import br.mackenzie.academico.dominio.CalendarioLetivo;
+import br.mackenzie.academico.excecao.CalendarioNaoEncontradoException;
 import java.util.List;
 
 /**
@@ -19,7 +20,7 @@ public interface InterfaceCalendarioLetivo {
 
     public void criaCalendarioLetivo(CalendarioLetivo novoCalendarioLetivo);
 
-    public CalendarioLetivo recuperaCalendarioLetivo(String eventos);
+    public CalendarioLetivo recuperaCalendarioLetivo(String eventos) throws CalendarioNaoEncontradoException;
 
     public void removeCalendarioLetivo(CalendarioLetivo cl);
 

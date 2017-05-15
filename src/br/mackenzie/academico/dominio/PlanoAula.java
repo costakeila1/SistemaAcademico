@@ -1,8 +1,7 @@
+//[315.31.89-1] Keila Lopes Costa 
 package br.mackenzie.academico.dominio;
 
-import java.io.Serializable;
-
-public class PlanoAula extends PlanoEnsino implements Serializable {
+public class PlanoAula extends PlanoEnsino implements java.io.Serializable {
     private String planejamentoAula;
     private CalendarioLetivo calendarioLetivo;
     private Oferecimento oferecimento;

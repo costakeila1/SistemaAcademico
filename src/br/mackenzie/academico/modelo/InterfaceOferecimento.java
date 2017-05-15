@@ -4,6 +4,7 @@ package br.mackenzie.academico.modelo;
 import br.mackenzie.academico.dominio.ComponenteCurricular;
 import br.mackenzie.academico.dominio.Oferecimento;
 import br.mackenzie.academico.dominio.Turma;
+import br.mackenzie.academico.excecao.ComponenteCurricularNaoEncontradoException;
 import java.util.List;
 
 public interface InterfaceOferecimento {
@@ -21,5 +22,5 @@ public interface InterfaceOferecimento {
 
     public Turma recuperaTurma(String strCodigoTurma);
 
-    public ComponenteCurricular recuperaComponenteCurricular(String strCodigoComponente);
+    public ComponenteCurricular recuperaComponenteCurricular(String strCodigoComponente) throws ComponenteCurricularNaoEncontradoException;
 }

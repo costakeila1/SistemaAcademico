@@ -3,6 +3,7 @@ package br.mackenzie.academico;
 
 import br.mackenzie.academico.controller.ControllerCurso;
 import br.mackenzie.academico.dominio.Curso;
+import br.mackenzie.academico.excecao.FaculdadeNaoEncontradaException;
 import br.mackenzie.academico.utils.Menu;
 import java.util.List;
 
@@ -32,7 +33,11 @@ public class CadastroCurso {
                     System.out.println("Inclusao de registro");
                     String strCnpj = menu.readInput("Entre com o CNPJ da Faculdade:");
                     String strNome = menu.readInput("Entre com o nome do curso:");
-                    controllerCurso.criaCurso(strCnpj, strNome);
+                    try {
+                        controllerCurso.criaCurso(strCnpj, strNome);
+                    } catch (FaculdadeNaoEncontradaException ex) {
+                        System.out.println("Faculdade não foi encontrada com o CNPJ:" + strCnpj);
+                    }
                     break;
                 }
                 case "2":

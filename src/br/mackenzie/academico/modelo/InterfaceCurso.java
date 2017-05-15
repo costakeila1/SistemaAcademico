@@ -3,6 +3,7 @@ package br.mackenzie.academico.modelo;
 
 import br.mackenzie.academico.dominio.Curso;
 import br.mackenzie.academico.dominio.Faculdade;
+import br.mackenzie.academico.excecao.FaculdadeNaoEncontradaException;
 import java.util.List;
 
 public interface InterfaceCurso {
@@ -17,5 +18,5 @@ public interface InterfaceCurso {
 
     public void removeCurso(Curso curso);
 
-    public Faculdade recuperaFaculdade(String strCnpj);
+    public Faculdade recuperaFaculdade(String strCnpj) throws FaculdadeNaoEncontradaException;;
 }

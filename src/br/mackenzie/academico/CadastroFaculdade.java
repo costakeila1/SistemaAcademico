@@ -3,6 +3,7 @@ package br.mackenzie.academico;
 
 import br.mackenzie.academico.controller.ControllerFaculdade;
 import br.mackenzie.academico.dominio.Faculdade;
+import br.mackenzie.academico.excecao.FaculdadeNaoEncontradaException;
 import br.mackenzie.academico.utils.Menu;
 import java.util.List;
 
@@ -47,7 +48,12 @@ public class CadastroFaculdade {
                 case "3": {
                     System.out.println("Atualiza");
                     String strCnpj = menu.readInput("Entre com o CNPJ da Faculdade:");
-                    Faculdade f = controllerFaculdade.recuperaFaculdade(strCnpj);
+                    Faculdade f = null;
+                    try {
+                        f = controllerFaculdade.recuperaFaculdade(strCnpj);
+                    } catch (FaculdadeNaoEncontradaException ex) {
+                        System.out.println("Faculdade não foi encontrada com o CNPJ:" + strCnpj);
+                    }
                     if (f != null) {
                         String strnome = menu.readInput("Entre com o novo nome [" + f.getNome() + "]:");
                         String strtelefone = menu.readInput("Entre com o novo telefone [" + f.getTelefone() + "]:");
@@ -62,7 +68,12 @@ public class CadastroFaculdade {
                 case "4": {
                     System.out.println("Remove");
                     String strCnpj = menu.readInput("Entre com o CNPJ da Faculdade:");
-                    Faculdade f = controllerFaculdade.recuperaFaculdade(strCnpj);
+                    Faculdade f = null;
+                    try {
+                        f = controllerFaculdade.recuperaFaculdade(strCnpj);
+                    } catch (FaculdadeNaoEncontradaException ex) {
+                        System.out.println("Faculdade não foi encontrada com o CNPJ:" + strCnpj);
+                    }
                     if (f != null) {
                         System.out.println(f.getNome() + ":" + f.getCNPJ());
                         String strConf = menu.readInput("Deseja realmente remover a faculdade do cadastro (S/N):");

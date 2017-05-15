@@ -4,6 +4,7 @@ package br.mackenzie.academico;
 import br.mackenzie.academico.controller.ControllerAluno;
 import br.mackenzie.academico.dominio.Aluno;
 import br.mackenzie.academico.dominio.Turma;
+import br.mackenzie.academico.excecao.AlunoNaoEncontradoException;
 import br.mackenzie.academico.utils.Menu;
 import java.util.List;
 
@@ -50,7 +51,12 @@ public class CadastroAluno {
                 case "3": {
                     System.out.println("Atualiza");
                     String tia = menu.readInput("Entre com o TIA do aluno:");
-                    Aluno a = controllerAluno.recuperaAluno(tia);
+                    Aluno a = null;
+                    try {
+                        a = controllerAluno.recuperaAluno(tia);
+                    } catch (AlunoNaoEncontradoException ex) {
+                        System.out.println("Aluno não foi encontrado com o TIA:" + tia);
+                    }
                     if (a != null) {
                         String strnome = menu.readInput("Entre com o novo nome [" + a.getNome() + "]:");
                         a.setNome(strnome);
@@ -64,7 +70,12 @@ public class CadastroAluno {
                 case "4": {
                     System.out.println("Remove");
                     String tia = menu.readInput("Entre com o tia do aluno:");
-                    Aluno a = controllerAluno.recuperaAluno(tia);
+                    Aluno a = null;
+                    try {
+                        a = controllerAluno.recuperaAluno(tia);
+                    } catch (AlunoNaoEncontradoException ex) {
+                        System.out.println("Aluno não foi encontrado com o TIA:" + tia);
+                    }
                     if (a != null) {
                         System.out.println("[" + a.getTIA() + "] " + a.getNome());
                         String strConf = menu.readInput("Deseja realmente remover o curso do cadastro (S/N):");

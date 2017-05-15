@@ -3,39 +3,40 @@ package br.mackenzie.academico.controller;
 
 import br.mackenzie.academico.dominio.Aluno;
 import br.mackenzie.academico.dominio.Turma;
+import br.mackenzie.academico.excecao.AlunoNaoEncontradoException;
 import br.mackenzie.academico.modelo.InterfaceAluno;
 import br.mackenzie.academico.modelo.Modelo;
 import java.util.List;
 
 public class ControllerAluno {
     
-    private InterfaceAluno ialuno;
+    private InterfaceAluno iAluno;
     
     public ControllerAluno(){
-        ialuno = (InterfaceAluno) Modelo.getInstance();
+        iAluno = (InterfaceAluno) Modelo.getInstance();
     }
 
     public void criaAluno(String nome, String tia, String codigo_turma){
-        Aluno novoAluno = new Aluno(ialuno.recuperaTurma(codigo_turma));
+        Aluno novoAluno = new Aluno(iAluno.recuperaTurma(codigo_turma));
         novoAluno.setNome(nome);
         novoAluno.setTIA(tia);
-        ialuno.criaAluno(novoAluno);
+        iAluno.criaAluno(novoAluno);
     }
 
     public List<Aluno> listaAlunos() {
-        return ialuno.listaAlunos();
+        return iAluno.listaAlunos();
     }
 
-    public Aluno recuperaAluno(String tia) {
-        return ialuno.recuperaAluno(tia);
+    public Aluno recuperaAluno(String tia) throws AlunoNaoEncontradoException{
+        return iAluno.recuperaAluno(tia);
     }
 
     public void atualizaAluno(Aluno aluno) {
-        ialuno.atualizaAluno(aluno);
+        iAluno.atualizaAluno(aluno);
     }
 
     public void removeAluno(Aluno aluno) {
-        ialuno.removeAluno(aluno);
+        iAluno.removeAluno(aluno);
     }
 
     public Turma recuperaTurma(String strturma) {

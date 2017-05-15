@@ -1,17 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+//[315.31.89-1] Keila Lopes Costa 
 package br.mackenzie.academico.dominio;
 
-import java.io.Serializable;
-
-/**
- *
- * @author gabriel domenicali
- */
-public class ProjetoPedagogico implements Serializable{
+public class ProjetoPedagogico implements java.io.Serializable{
     private String justificativa;
     private String perfil;
     private Curso curso;

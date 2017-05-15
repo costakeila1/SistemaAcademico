@@ -1,9 +1,7 @@
 //[315.31.89-1] Keila Lopes Costa 
 package br.mackenzie.academico.dominio;
 
-import java.io.Serializable;
-
-public class PlanoEnsino extends Ementa implements Serializable{
+public class PlanoEnsino extends Ementa implements java.io.Serializable{
     
     private String conceitos;
     private String conteudoProgramatico;
