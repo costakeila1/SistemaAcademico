@@ -3,8 +3,11 @@ package br.mackenzie.academico;
 
 import br.mackenzie.academico.controller.ControllerPlanoEnsino;
 import br.mackenzie.academico.dominio.PlanoEnsino;
+import br.mackenzie.academico.excecao.PlanoEnsinoNaoEncontradoException;
 import br.mackenzie.academico.utils.Menu;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CadastroPlanoEnsino {
 
@@ -53,7 +56,12 @@ public class CadastroPlanoEnsino {
                 case "3": {
                     System.out.println("Atualiza");
                     String codigoEmenta = menu.readInput("Entre com o código da Ementa:");
-                    PlanoEnsino pe = controllerPlanoEnsino.recuperaPlanoEnsino(codigoEmenta);
+                    PlanoEnsino pe = null;
+                    try {
+                        pe = controllerPlanoEnsino.recuperaPlanoEnsino(codigoEmenta);
+                    } catch (PlanoEnsinoNaoEncontradoException ex) {
+                        Logger.getLogger(CadastroPlanoEnsino.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     if (pe != null) {
                         String conceitos = menu.readInput("Entre com os conceitos do plano de ensino:");
                         String conteudoProgramatico = menu.readInput("Entre com o conteúdo programático:");
@@ -74,7 +82,12 @@ public class CadastroPlanoEnsino {
                 case "4": {
                     System.out.println("Remove");
                     String codigoEmenta = menu.readInput("Entre com o código da Ementa:");
-                    PlanoEnsino pe = controllerPlanoEnsino.recuperaPlanoEnsino(codigoEmenta);
+                    PlanoEnsino pe = null;
+                    try {
+                        pe = controllerPlanoEnsino.recuperaPlanoEnsino(codigoEmenta);
+                    } catch (PlanoEnsinoNaoEncontradoException ex) {
+                        Logger.getLogger(CadastroPlanoEnsino.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     if (pe != null) {
                         String strConf = menu.readInput("Deseja realmente remover o plano de ensino do cadastro (S/N):");
                         if (strConf.equals("S")) {

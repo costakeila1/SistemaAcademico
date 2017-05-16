@@ -2,6 +2,8 @@ package br.mackenzie.academico.controller;
 
 import br.mackenzie.academico.dominio.Oferecimento;
 import br.mackenzie.academico.dominio.Professor;
+import br.mackenzie.academico.excecao.OferecimentoNaoEncontradoException;
+import br.mackenzie.academico.excecao.ProfessorNaoEncontradoException;
 import br.mackenzie.academico.modelo.InterfaceProfessor;
 import br.mackenzie.academico.modelo.Modelo;
 import java.util.List;
@@ -14,7 +16,7 @@ public class ControllerProfessor {
         iProfessor = (InterfaceProfessor) Modelo.getInstance();
     }
 
-    public void criaProfessor(String nome, String drt, String codComponente, String codTurma) {
+    public void criaProfessor(String nome, String drt, String codComponente, String codTurma) throws OferecimentoNaoEncontradoException {
         Oferecimento oferecimento = iProfessor.recuperaOferecimento(codComponente, codTurma);
         Professor novoProfessor = new Professor (oferecimento);
         novoProfessor.setNome(nome);
@@ -26,11 +28,11 @@ public class ControllerProfessor {
         return iProfessor.listaProfessores();
     }
 
-    public Professor recuperaProfessor(String drt) {
+    public Professor recuperaProfessor(String drt) throws ProfessorNaoEncontradoException {
         return iProfessor.recuperaProfessor(drt);
     }
 
-    public void atualizaProfessor(Professor p, String codComponente, String codTurma) {
+    public void atualizaProfessor(Professor p, String codComponente, String codTurma) throws OferecimentoNaoEncontradoException {
         Oferecimento oferecimento = iProfessor.recuperaOferecimento(codComponente, codTurma);
         p.setOferecimento(oferecimento);
         iProfessor.atualizaProfessor(p);

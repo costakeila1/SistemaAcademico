@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.geometry.*?>
+<?import com.jfoenix.validation.*?>
+<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eduk.CRM.ControllerLogin">
+    <children>
+        <HBox prefHeight="50.0" prefWidth="750.0" style="-fx-background-color: ff0033;">
+            <children>
+                <JFXHamburger style="-fx-background-color: ff0033;" visible="false">
+                    <padding>
+                        <Insets left="10.0" />
+                    </padding>
+                </JFXHamburger>
+                <Region style="-fx-background-color: ff0033;" HBox.hgrow="ALWAYS" />
+                <ImageView fitHeight="53.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../resources/eduK_invertido.jpg" />
+                    </image>
+                </ImageView>
+                <Region style="-fx-background-color: ff0033;" HBox.hgrow="ALWAYS" />
+            </children>
+        </HBox>
+        <HBox prefHeight="497.0" prefWidth="750.0" style="-fx-background-color: #000000;" VBox.vgrow="ALWAYS">
+            <children>
+                <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                <GridPane HBox.hgrow="ALWAYS">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints maxHeight="98.0" minHeight="120.0" prefHeight="120.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="60.0" minHeight="60.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="60.0" minHeight="60.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="60.0" minHeight="60.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="142.0" minHeight="55.0" prefHeight="55.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="145.0" minHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <JFXTextField fx:id="username" alignment="CENTER" focusColor="#ff0033" focusTraversable="false" promptText="seu_email@eduk.com.br" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
+                            <font>
+                                <Font name="Arial" size="13.0" />
+                            </font>
+                        </JFXTextField>
+                        <JFXPasswordField fx:id="password" alignment="CENTER" focusColor="#ff0033" focusTraversable="false" promptText="******" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
+                            <font>
+                                <Font name="Arial" size="17.0" />
+                            </font>
+                        </JFXPasswordField>
+                        <JFXButton fx:id="login" focusTraversable="false" onAction="#makeLogin" prefHeight="31.0" prefWidth="146.0" style="-fx-background-color: #4d4d4d;" text="ENTRAR" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                            <font>
+                                <Font name="Arial" size="12.0" />
+                            </font>
+                        </JFXButton>
+                        <JFXToggleButton focusTraversable="false" text="Salvar" toggleColor="#ff0033" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
+                            <font>
+                                <Font name="Berlin Sans FB Bold" size="18.0" />
+                            </font>
+                        </JFXToggleButton>
+                    </children>
+                    </GridPane>
+                    <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+            </children>
+        </HBox>
+    </children>
+</VBox>

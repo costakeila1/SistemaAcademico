@@ -2,6 +2,7 @@
 package br.mackenzie.academico.controller;
 
 import br.mackenzie.academico.dominio.Ementa;
+import br.mackenzie.academico.excecao.EmentaNaoEnconradaException;
 import br.mackenzie.academico.modelo.InterfaceEmenta;
 import br.mackenzie.academico.modelo.Modelo;
 import java.util.List;
@@ -24,7 +25,7 @@ public class ControllerEmenta {
         return iEmenta.listaEmentas();
     }
 
-    public Ementa recuperaEmenta(String strCodigo) {
+    public Ementa recuperaEmenta(String strCodigo) throws EmentaNaoEnconradaException {
         return iEmenta.recuperaEmenta(strCodigo);
     }
 

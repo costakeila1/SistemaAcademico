@@ -3,7 +3,7 @@ package br.mackenzie.academico.dominio;
 
 import java.io.Serializable;
 
-public class Aluno implements java.io.Serializable {
+public class Aluno implements Serializable {
 
     private String nome;
     private String TIA;

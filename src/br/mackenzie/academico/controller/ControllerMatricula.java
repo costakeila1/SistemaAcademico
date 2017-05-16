@@ -5,6 +5,8 @@ import br.mackenzie.academico.dominio.Aluno;
 import br.mackenzie.academico.dominio.Matricula;
 import br.mackenzie.academico.dominio.Oferecimento;
 import br.mackenzie.academico.excecao.AlunoNaoEncontradoException;
+import br.mackenzie.academico.excecao.MatriculaNaoEncontradaException;
+import br.mackenzie.academico.excecao.OferecimentoNaoEncontradoException;
 import br.mackenzie.academico.modelo.InterfaceMatricula;
 import br.mackenzie.academico.modelo.Modelo;
 import java.util.List;
@@ -17,7 +19,7 @@ public class ControllerMatricula {
         imatricula = (InterfaceMatricula) Modelo.getInstance();
     }
 
-    public void criaMatricula(String tia, String codigo_turma, String codigo_componente) throws AlunoNaoEncontradoException {
+    public void criaMatricula(String tia, String codigo_turma, String codigo_componente) throws AlunoNaoEncontradoException, OferecimentoNaoEncontradoException {
         Aluno aluno = imatricula.recuperaAluno(tia);
         Oferecimento oferecimento = imatricula.recuperaOferecimento(codigo_turma, codigo_componente);
         Matricula matricula = new Matricula(aluno, oferecimento);
@@ -28,7 +30,7 @@ public class ControllerMatricula {
         return imatricula.listaMatriculas();
     }
 
-    public Matricula recuperaMatricula(String tia, String codigo_turma, String codigo_componente) throws AlunoNaoEncontradoException {
+    public Matricula recuperaMatricula(String tia, String codigo_turma, String codigo_componente) throws AlunoNaoEncontradoException, MatriculaNaoEncontradaException, OferecimentoNaoEncontradoException {
         Aluno aluno = imatricula.recuperaAluno(tia);
         Oferecimento oferecimento = imatricula.recuperaOferecimento(codigo_turma, codigo_componente);
         Matricula matricula = imatricula.recuperaMatricula(aluno, oferecimento);

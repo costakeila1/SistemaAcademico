@@ -4,8 +4,12 @@ package br.mackenzie.academico;
 import br.mackenzie.academico.controller.ControllerMatricula;
 import br.mackenzie.academico.dominio.Matricula;
 import br.mackenzie.academico.excecao.AlunoNaoEncontradoException;
+import br.mackenzie.academico.excecao.MatriculaNaoEncontradaException;
+import br.mackenzie.academico.excecao.OferecimentoNaoEncontradoException;
 import br.mackenzie.academico.utils.Menu;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CadastroMatricula {
 
@@ -38,6 +42,8 @@ public class CadastroMatricula {
                         controllerMatricula.criaMatricula(tia, codigo_turma, codigo_componente);
                     } catch (AlunoNaoEncontradoException ex) {
                         System.out.println("Aluno não foi encontrado com o TIA:" + tia);
+                    } catch (OferecimentoNaoEncontradoException ex) {
+                        System.out.println("Oferecimento não encontrado!");
                     }
                     break;
                 }
@@ -57,8 +63,12 @@ public class CadastroMatricula {
                     Matricula matricula = null;
                     try {
                         matricula = controllerMatricula.recuperaMatricula(tia, codigo_turma, codigo_componente);
-                    } catch (AlunoNaoEncontradoException ex) {
+                    } catch (AlunoNaoEncontradoException ane) {
                         System.out.println("Aluno não foi encontrado com o TIA:" + tia);
+                    } catch (MatriculaNaoEncontradaException mne) {
+                        System.out.println("Matrícula não encontrada!");
+                    } catch (OferecimentoNaoEncontradoException ex) {
+                        System.out.println("Oferecimento não encontrado!");
                     }
                     if (matricula != null) {
                         String status = menu.readInput("Entre com o novo status: ");
@@ -80,6 +90,10 @@ public class CadastroMatricula {
                         m = controllerMatricula.recuperaMatricula(tia, codigo_turma, codigo_componente);
                     } catch (AlunoNaoEncontradoException ex) {
                         System.out.println("Aluno não foi encontrado com o TIA:" + tia);
+                    } catch (MatriculaNaoEncontradaException mne) {
+                        System.out.println("Matrícula não encontrada!");
+                    } catch (OferecimentoNaoEncontradoException ex) {
+                        System.out.println("Oferecimento não encontrado!");
                     }
                     if (m != null) {
                         System.out.println(m.getOferecimento().getTurma().getCodigo() + " : " + m.getOferecimento().getComponenteCurricular().getNome());

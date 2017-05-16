@@ -3,8 +3,12 @@ package br.mackenzie.academico;
 
 import br.mackenzie.academico.controller.ControllerProjetoPedagogico;
 import br.mackenzie.academico.dominio.ProjetoPedagogico;
+import br.mackenzie.academico.excecao.CursoNaoEncontradoException;
+import br.mackenzie.academico.excecao.ProjetoPedagogicoNaoEncontradoException;
 import br.mackenzie.academico.utils.Menu;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CadastroProjetoPedagogico {
 
@@ -34,7 +38,11 @@ public class CadastroProjetoPedagogico {
                     String curso = menu.readInput("Entre com o nome do curso:");
                     String justificativa = menu.readInput("Entre com a justificativa:");
                     String perfil = menu.readInput("Entre com o perfil:");
-                    controllerProjetoPedagogico.criaProjetoPedagogico(justificativa, perfil, curso);
+                    try {
+                        controllerProjetoPedagogico.criaProjetoPedagogico(justificativa, perfil, curso);
+                    } catch (CursoNaoEncontradoException ex) {
+                        Logger.getLogger(CadastroProjetoPedagogico.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     break;
                 }
                 case "2":
@@ -47,7 +55,12 @@ public class CadastroProjetoPedagogico {
                 case "3": {
                     System.out.println("Atualiza");
                     String nomeCurso = menu.readInput("Entre com o nome do curso:");
-                    ProjetoPedagogico p = controllerProjetoPedagogico.recuperaProjetoPedagogico(nomeCurso);
+                    ProjetoPedagogico p = null;
+                    try {
+                        p = controllerProjetoPedagogico.recuperaProjetoPedagogico(nomeCurso);
+                    } catch (ProjetoPedagogicoNaoEncontradoException ex) {
+                        Logger.getLogger(CadastroProjetoPedagogico.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     if (p != null) {
                         String justificativa = menu.readInput("Entre com a nova justificativa:");
                         String perfil = menu.readInput("Entre com o novo perfil:");
@@ -60,7 +73,12 @@ public class CadastroProjetoPedagogico {
                 case "4": {
                     System.out.println("Remove");
                     String nomeCurso = menu.readInput("Entre com o nome do curso:");
-                    ProjetoPedagogico p = controllerProjetoPedagogico.recuperaProjetoPedagogico(nomeCurso);
+                    ProjetoPedagogico p = null;
+                    try {
+                        p = controllerProjetoPedagogico.recuperaProjetoPedagogico(nomeCurso);
+                    } catch (ProjetoPedagogicoNaoEncontradoException ex) {
+                        Logger.getLogger(CadastroProjetoPedagogico.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     if (p != null) {
                         System.out.println(p.getCurso().getNome() + " : " + p.getPerfil() + " : " + p.getJustificativa());
                         String strConf = menu.readInput("Deseja realmente remover o projeto pedagógico (S/N):");

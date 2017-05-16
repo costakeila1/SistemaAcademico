@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXHamburger?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eduk.CRM.ControllerHome">
+   <children>
+      <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="800.0" style="-fx-background-color: ff0033;">
+         <children>
+            <JFXHamburger fx:id="menuHamburguer" alignment="CENTER" opacity="0.44" HBox.hgrow="NEVER">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </JFXHamburger>
+            <Region style="-fx-background-color: ff0033;" HBox.hgrow="ALWAYS" />
+            <ImageView fitHeight="53.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../resources/eduK_invertido.jpg" />
+               </image>
+            </ImageView>
+            <Region style="-fx-background-color: ff0033;" HBox.hgrow="ALWAYS" />
+         </children>
+      </HBox>
+      <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="549.0" prefWidth="800.0" style="-fx-background-color: #000000;" VBox.vgrow="ALWAYS">
+         <children>
+            <JFXDrawer fx:id="menuDrawer" defaultDrawerSize="150.0" prefHeight="550.0" prefWidth="150.0" />
+            <Pane fx:id="mPane" prefHeight="548.0" prefWidth="650.0" />
+         </children></HBox>
+   </children>
+</VBox>

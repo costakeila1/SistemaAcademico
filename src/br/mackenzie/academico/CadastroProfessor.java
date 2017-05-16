@@ -3,6 +3,8 @@ package br.mackenzie.academico;
 
 import br.mackenzie.academico.controller.ControllerProfessor;
 import br.mackenzie.academico.dominio.Professor;
+import br.mackenzie.academico.excecao.OferecimentoNaoEncontradoException;
+import br.mackenzie.academico.excecao.ProfessorNaoEncontradoException;
 import br.mackenzie.academico.utils.Menu;
 import java.util.List;
 
@@ -35,7 +37,11 @@ public class CadastroProfessor {
                     String drt = menu.readInput("Entre com o DRT do professor:");
                     String codComponente = menu.readInput("Entre com o código do componente curricular");
                     String codTurma = menu.readInput("Entre com o código da turma");
-                    controllerProfessor.criaProfessor(nome, drt, codComponente, codTurma);
+                    try {
+                        controllerProfessor.criaProfessor(nome, drt, codComponente, codTurma);
+                    } catch (OferecimentoNaoEncontradoException ex) {
+                        System.out.println("Oferecimento não encontrado!");
+                    }
                     break;
                 }
                 case "2":
@@ -48,21 +54,34 @@ public class CadastroProfessor {
                 case "3": {
                     System.out.println("Atualiza");
                     String drt = menu.readInput("Entre com o DRT do professor:");
-                    Professor p = controllerProfessor.recuperaProfessor(drt);
+                    Professor p = null;
+                    try {
+                        p = controllerProfessor.recuperaProfessor(drt);
+                    } catch (ProfessorNaoEncontradoException ex) {
+                        System.out.println("Professor não encontrado!");
+                    }
                     if (p != null) {
                         String nome = menu.readInput("Entre com o novo nome [" + p.getNome() + "]:");
                         String codComponente = menu.readInput("Entre com o código do componente curricular");
                         String codTurma = menu.readInput("Entre com o código da turma");
                         p.setNome(nome);
-                        controllerProfessor.atualizaProfessor(p, codComponente, codTurma);
-
+                        try {
+                            controllerProfessor.atualizaProfessor(p, codComponente, codTurma);
+                        } catch (OferecimentoNaoEncontradoException ex) {
+                            System.out.println("Oferecimento não encontrado!");
+                        }
                     }
                     break;
                 }
                 case "4": {
                     System.out.println("Remove");
                     String drt = menu.readInput("Entre com o DRT do professor:");
-                    Professor p = controllerProfessor.recuperaProfessor(drt);
+                    Professor p = null;
+                    try {
+                        p = controllerProfessor.recuperaProfessor(drt);
+                    } catch (ProfessorNaoEncontradoException ex) {
+                        System.out.println("Professor não encontrado!");
+                    }
                     if (p != null) {
                         System.out.println(p.getNome() + ":" + p.getDRT());
                         String strConf = menu.readInput("Deseja realmente remover o professor do cadastro (S/N):");

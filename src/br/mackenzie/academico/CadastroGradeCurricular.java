@@ -3,8 +3,11 @@ package br.mackenzie.academico;
 
 import br.mackenzie.academico.controller.ControllerGradeCurricular;
 import br.mackenzie.academico.dominio.GradeCurricular;
+import br.mackenzie.academico.excecao.GradeCurricularNaoEncontradaException;
 import br.mackenzie.academico.utils.Menu;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CadastroGradeCurricular {
 
@@ -47,7 +50,12 @@ public class CadastroGradeCurricular {
                 case "3": {
                     System.out.println("Atualiza");
                     String strProjetoPedagogico = menu.readInput("Entre com as  da grade:");
-                    GradeCurricular g = controllerGradeCurricular.recuperaGradeCurricular(strProjetoPedagogico);
+                    GradeCurricular g = null;
+                    try {
+                        g = controllerGradeCurricular.recuperaGradeCurricular(strProjetoPedagogico);
+                    } catch (GradeCurricularNaoEncontradaException ex) {
+                        System.out.println("Grade curricular não encontrada!");
+                    }
                     if (g != null) {
                         String strInformacoes = menu.readInput("Entre com as informacoes" + g.getInformacoes());
                         g.setInformacoes(strInformacoes);
@@ -58,7 +66,12 @@ public class CadastroGradeCurricular {
                 case "4": {
                     System.out.println("Remove");
                     String strProjetoPedagogico = menu.readInput("Entre com o projeto pedagogico:");
-                    GradeCurricular g = controllerGradeCurricular.recuperaGradeCurricular(strProjetoPedagogico);
+                    GradeCurricular g = null;
+                    try {
+                        g = controllerGradeCurricular.recuperaGradeCurricular(strProjetoPedagogico);
+                    } catch (GradeCurricularNaoEncontradaException ex) {
+                        System.out.println("Grade curricular não encontrada!");
+                    }
                     if (g != null) {
                         System.out.println(g.getInformacoes());
                         String strConf = menu.readInput("Deseja realmente remover o curso do cadastro (S/N):");

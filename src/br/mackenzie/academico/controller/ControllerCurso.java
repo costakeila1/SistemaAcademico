@@ -2,6 +2,7 @@
 package br.mackenzie.academico.controller;
 
 import br.mackenzie.academico.dominio.Curso;
+import br.mackenzie.academico.excecao.CursoNaoEncontradoException;
 import br.mackenzie.academico.excecao.FaculdadeNaoEncontradaException;
 import br.mackenzie.academico.modelo.InterfaceCurso;
 import br.mackenzie.academico.modelo.Modelo;
@@ -25,7 +26,7 @@ public class ControllerCurso {
         return icurso.listaCursos();
     }
 
-    public Curso recuperaCurso(String cpnj) {
+    public Curso recuperaCurso(String cpnj) throws CursoNaoEncontradoException {
         return icurso.recuperaCurso(cpnj);
     }
 

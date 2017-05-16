@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXTimePicker?>
+<?import com.jfoenix.controls.JFXToggleButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="600.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eduk.CRM.ControllerNovoPush">
+   <children>
+        <JFXTextField fx:id="templateID" focusColor="#ff0033" focusTraversable="false" layoutX="14.0" layoutY="56.0" prefHeight="25.0" prefWidth="300.0" promptText="Template ID">
+         <tooltip>
+            <Tooltip text="Empty Tooltip" />
+         </tooltip></JFXTextField>
+        <JFXTextField fx:id="title" focusColor="#ff0033" focusTraversable="false" layoutX="14.0" layoutY="91.0" prefHeight="25.0" prefWidth="300.0" promptText="Título" />
+        <JFXTextArea fx:id="mesage" focusColor="#ff0033" focusTraversable="false" layoutX="14.0" layoutY="131.0" prefHeight="95.0" prefWidth="300.0" promptText="Mensagem" />
+        <JFXDatePicker fx:id="dateToSend" defaultColor="#ff0033" focusTraversable="false" layoutX="14.0" layoutY="247.0" prefHeight="25.0" prefWidth="130.0" promptText="Data">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <tooltip>
+            <Tooltip text="Empty Tooltip" />
+         </tooltip></JFXDatePicker>
+      <JFXToggleButton focusTraversable="false" layoutX="300.0" layoutY="76.0" prefHeight="28.0" prefWidth="204.0" text="Título no CSV" toggleColor="#ff0033">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <tooltip>
+            <Tooltip text="Empty Tooltip" />
+         </tooltip>
+      </JFXToggleButton>
+      <JFXToggleButton focusTraversable="false" layoutX="314.0" layoutY="158.0" prefHeight="59.0" prefWidth="204.0" text="Mensagem no CSV" toggleColor="#ff0033">
+         <tooltip>
+            <Tooltip text="Empty Tooltip" />
+         </tooltip></JFXToggleButton>
+      <JFXButton fx:id="sendNotification" focusTraversable="false" layoutX="78.0" layoutY="327.0" prefHeight="25.0" prefWidth="172.0" style="-fx-background-color: #424242;" text="Enviar" textFill="WHITE" />
+      <JFXTimePicker fx:id="timeToSend" defaultColor="#ff0033" layoutX="185.0" layoutY="247.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="130.0" promptText="Horário" />
+      
+   </children>
+</Pane>

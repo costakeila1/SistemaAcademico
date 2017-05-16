@@ -5,6 +5,7 @@ import br.mackenzie.academico.dominio.ComponenteCurricular;
 import br.mackenzie.academico.dominio.Oferecimento;
 import br.mackenzie.academico.dominio.Turma;
 import br.mackenzie.academico.excecao.ComponenteCurricularNaoEncontradoException;
+import br.mackenzie.academico.excecao.OferecimentoNaoEncontradoException;
 import br.mackenzie.academico.modelo.InterfaceOferecimento;
 import br.mackenzie.academico.modelo.Modelo;
 import java.util.List;
@@ -29,7 +30,7 @@ public class ControllerOferecimento {
         return ioferecimento.listaOferecimentos();
     }
     
-    public Oferecimento recuperaOferecimento(String codigoTurma, String codigoComponenteCurricular){
+    public Oferecimento recuperaOferecimento(String codigoTurma, String codigoComponenteCurricular) throws OferecimentoNaoEncontradoException{
         return ioferecimento.recuperaOferecimento(codigoTurma,codigoComponenteCurricular);
     }
     

@@ -2,6 +2,7 @@
 package br.mackenzie.academico.controller;
 
 import br.mackenzie.academico.dominio.Turma;
+import br.mackenzie.academico.excecao.CursoNaoEncontradoException;
 import br.mackenzie.academico.modelo.InterfaceTurma;
 import br.mackenzie.academico.modelo.Modelo;
 import java.util.List;
@@ -14,8 +15,7 @@ public class ControllerTurma {
         iturma = (InterfaceTurma) Modelo.getInstance();
     }
 
-    public void criaTurma(String strNome, String strCodigo, String strPeriodo) {
-
+    public void criaTurma(String strNome, String strCodigo, String strPeriodo) throws CursoNaoEncontradoException {
         Turma novaTurma = new Turma(iturma.recuperaCurso(strNome));
         novaTurma.setCodigo(strCodigo);
         novaTurma.setPeriodoDeIngresso(strPeriodo);

@@ -3,6 +3,7 @@ package br.mackenzie.academico.modelo;
 
 import br.mackenzie.academico.dominio.Curso;
 import br.mackenzie.academico.dominio.Faculdade;
+import br.mackenzie.academico.excecao.CursoNaoEncontradoException;
 import br.mackenzie.academico.excecao.FaculdadeNaoEncontradaException;
 import java.util.List;
 
@@ -12,7 +13,7 @@ public interface InterfaceCurso {
 
     public List<Curso> listaCursos();
 
-    public Curso recuperaCurso(String nome);
+    public Curso recuperaCurso(String nome) throws CursoNaoEncontradoException;
 
     public void atualizaCurso(Curso curso);
 

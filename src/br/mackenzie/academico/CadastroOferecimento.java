@@ -4,8 +4,11 @@ package br.mackenzie.academico;
 import br.mackenzie.academico.controller.ControllerOferecimento;
 import br.mackenzie.academico.dominio.Oferecimento;
 import br.mackenzie.academico.excecao.ComponenteCurricularNaoEncontradoException;
+import br.mackenzie.academico.excecao.OferecimentoNaoEncontradoException;
 import br.mackenzie.academico.utils.Menu;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CadastroOferecimento {
 
@@ -54,7 +57,12 @@ public class CadastroOferecimento {
                     System.out.println("Atualiza");
                     String strCodigoTurma = menu.readInput("Entre com o codigo da turma:");
                     String strCodigoComponente = menu.readInput("Entre com o codigo do componente curricular:");
-                    Oferecimento o = controllerOferecimento.recuperaOferecimento(strCodigoTurma, strCodigoComponente);
+                    Oferecimento o = null;
+                    try {
+                        o = controllerOferecimento.recuperaOferecimento(strCodigoTurma, strCodigoComponente);
+                    } catch (OferecimentoNaoEncontradoException ex) {
+                        System.out.println("Oferecimento não encontrado!");
+                    }
                     if (o != null) {
                         String strInfoAdicional = menu.readInput("Entre com informacoes adicionais [" + o.getInformacoesAdicionais() + "]:");
                         o.setInformacoesAdicionais(strInfoAdicional);
@@ -66,7 +74,12 @@ public class CadastroOferecimento {
                     System.out.println("Remove");
                     String strCodigoTurma = menu.readInput("Entre com o codigo da turma:");
                     String strCodigoComponente = menu.readInput("Entre com o codigo do componente curricular:");
-                    Oferecimento o = controllerOferecimento.recuperaOferecimento(strCodigoTurma, strCodigoComponente);
+                    Oferecimento o = null;
+                    try {
+                        o = controllerOferecimento.recuperaOferecimento(strCodigoTurma, strCodigoComponente);
+                    } catch (OferecimentoNaoEncontradoException ex) {
+                        System.out.println("Oferecimento não encontrado!");
+                    }
                     if (o != null) {
                         System.out.println(o.getTurma().getCodigo() + ":" + o.getComponenteCurricular().getCodigo());
                         String strConf = menu.readInput("Deseja realmente remover o oferecimento do cadastro (S/N):");
@@ -83,7 +96,6 @@ public class CadastroOferecimento {
                 default:
                     System.out.println("Entrada Invalida");
                     break;
-
             }
         }
     }

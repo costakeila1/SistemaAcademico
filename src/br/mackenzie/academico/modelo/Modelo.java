@@ -19,7 +19,16 @@ import br.mackenzie.academico.dominio.Turma;
 import br.mackenzie.academico.excecao.AlunoNaoEncontradoException;
 import br.mackenzie.academico.excecao.CalendarioNaoEncontradoException;
 import br.mackenzie.academico.excecao.ComponenteCurricularNaoEncontradoException;
+import br.mackenzie.academico.excecao.CursoNaoEncontradoException;
+import br.mackenzie.academico.excecao.EmentaNaoEnconradaException;
 import br.mackenzie.academico.excecao.FaculdadeNaoEncontradaException;
+import br.mackenzie.academico.excecao.GradeCurricularNaoEncontradaException;
+import br.mackenzie.academico.excecao.MatriculaNaoEncontradaException;
+import br.mackenzie.academico.excecao.OferecimentoNaoEncontradoException;
+import br.mackenzie.academico.excecao.PlanoAulaNaoEncontradoException;
+import br.mackenzie.academico.excecao.PlanoEnsinoNaoEncontradoException;
+import br.mackenzie.academico.excecao.ProfessorNaoEncontradoException;
+import br.mackenzie.academico.excecao.ProjetoPedagogicoNaoEncontradoException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -39,10 +48,10 @@ public class Modelo implements
         InterfaceCurso,
         InterfaceEmenta,
         InterfaceFaculdade,
-        //InterfaceGradeCurricular  
+        InterfaceGradeCurricular,
         InterfaceMatricula,
         InterfaceOferecimento,
-        //InterfacePlanoAula,
+        InterfacePlanoAula,
         InterfacePlanoEnsino,
         InterfaceProfessor,
         InterfaceProjetoPedagogico,
@@ -75,7 +84,6 @@ public class Modelo implements
     }
 
     public void persisteDados() {
-
         if (alunos != null) {
             persiste(alunos, Aluno.class);
         }
@@ -94,9 +102,9 @@ public class Modelo implements
         if (faculdades != null) {
             persiste(faculdades, Faculdade.class);
         }
-        //if (grades != null) {
-        //    persiste(grades, GradeCurricular.class);
-        //}
+        if (grades != null) {
+            persiste(grades, GradeCurricular.class);
+        }
         if (matriculas != null) {
             persiste(matriculas, Matricula.class);
         }
@@ -150,7 +158,7 @@ public class Modelo implements
             fis.close();
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Arquivo não encontrado!");
         }
         return list;
     }
@@ -308,7 +316,7 @@ public class Modelo implements
     }
 
     @Override
-    public Curso recuperaCurso(String nome) {
+    public Curso recuperaCurso(String nome) throws CursoNaoEncontradoException {
         for (Curso c : cursos) {
             if (c.getNome().trim().equals(nome.trim())) {
                 return c;
@@ -351,7 +359,7 @@ public class Modelo implements
     }
 
     @Override
-    public Ementa recuperaEmenta(String codigo) {
+    public Ementa recuperaEmenta(String codigo) throws EmentaNaoEnconradaException {
         for (Ementa e : ementas) {
             if (e.getCodigo().equals(codigo)) {
                 return e;
@@ -415,6 +423,32 @@ public class Modelo implements
         }
     }
 
+    //MANIPULANDO GRADES CURRICULARES
+    @Override
+    public void criaGradeCurricular(GradeCurricular novaGradeCurricular) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<GradeCurricular> listaGradesCurriculares() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public GradeCurricular recuperaGradeCurricular(String projetoPedagogico) throws GradeCurricularNaoEncontradaException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void atualizaGradeCurricular(GradeCurricular gradeCurricular) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void removeGradeCurricular(GradeCurricular gradeCurricular) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
     // MANIPULANDO MATRÍCULAS
     @Override
     public void criaMatricula(Matricula novaMatricula) {
@@ -430,7 +464,7 @@ public class Modelo implements
     }
 
     @Override
-    public Matricula recuperaMatricula(Aluno aluno, Oferecimento oferecimento) {
+    public Matricula recuperaMatricula(Aluno aluno, Oferecimento oferecimento) throws MatriculaNaoEncontradaException {
         for (Matricula m : matriculas) {
             if (m.getAluno().equals(aluno) && m.getOferecimento().equals(oferecimento)) {
                 return m;
@@ -496,7 +530,7 @@ public class Modelo implements
     }
 
     @Override
-    public Oferecimento recuperaOferecimento(String codigoTurma, String codigoComponenteCurricular) {
+    public Oferecimento recuperaOferecimento(String codigoTurma, String codigoComponenteCurricular) throws OferecimentoNaoEncontradoException {
         for (Oferecimento o : oferecimentos) {
             if ((o.getTurma().getCodigo().trim().equals(codigoTurma.trim()))
                     && (o.getComponenteCurricular().getCodigo().trim().equals(codigoComponenteCurricular.trim()))) {
@@ -527,6 +561,31 @@ public class Modelo implements
         }
     }
 
+    //MANIPULANDO PLANOS DE AULA
+    @Override
+    public void criaPlanoAula(PlanoAula novoPlanoAula){
+        if(planosAula ==null){
+            planosAula = new ArrayList<>();
+        }
+        planosAula.add(novoPlanoAula);
+    }
+    
+    public List<PlanoAula> listaPlanosAula(){
+        return planosAula;
+    }
+    
+    public PlanoAula recuperaPlanoAula() throws PlanoAulaNaoEncontradoException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public void atualizaPlanoAula(PlanoAula planoAula){
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public void removePlanoAula(PlanoAula planoAula){
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
     //MANUPILANDO PLANOS DE ENSINO
     @Override
     public void criaPlanoEnsino(PlanoEnsino novoPlanoEnsino) {
@@ -542,7 +601,7 @@ public class Modelo implements
     }
 
     @Override
-    public PlanoEnsino recuperaPlanoEnsino(String codigoEmenta) {
+    public PlanoEnsino recuperaPlanoEnsino(String codigoEmenta) throws PlanoEnsinoNaoEncontradoException {
         for (PlanoEnsino pe : planosEnsino) {
             if (pe.getCodigo().equals(codigoEmenta)) {
                 return pe;
@@ -589,7 +648,7 @@ public class Modelo implements
     }
 
     @Override
-    public Professor recuperaProfessor(String drt) {
+    public Professor recuperaProfessor(String drt) throws ProfessorNaoEncontradoException {
         for (Professor p : professores) {
             if (p.getDRT().equals(drt)) {
                 return p;
@@ -632,7 +691,7 @@ public class Modelo implements
     }
 
     @Override
-    public ProjetoPedagogico recuperaProjetoPedagogico(String nomeCurso) {
+    public ProjetoPedagogico recuperaProjetoPedagogico(String nomeCurso) throws ProjetoPedagogicoNaoEncontradoException {
         for (ProjetoPedagogico p : projetos) {
             if (p.getCurso().getNome().equals(nomeCurso)) {
                 return p;

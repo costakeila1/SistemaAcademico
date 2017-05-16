@@ -3,8 +3,11 @@ package br.mackenzie.academico;
 
 import br.mackenzie.academico.controller.ControllerEmenta;
 import br.mackenzie.academico.dominio.Ementa;
+import br.mackenzie.academico.excecao.EmentaNaoEnconradaException;
 import br.mackenzie.academico.utils.Menu;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CadastroEmenta {
 
@@ -51,7 +54,12 @@ public class CadastroEmenta {
                 case "3": {
                     System.out.println("Remove");
                     String strCodigo = menu.readInput("Entre com o codigo da ementa:");
-                    Ementa e = controllerEmenta.recuperaEmenta(strCodigo);
+                    Ementa e = null;
+                    try {
+                        e = controllerEmenta.recuperaEmenta(strCodigo);
+                    } catch (EmentaNaoEnconradaException ex) {
+                        Logger.getLogger(CadastroEmenta.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     if (e != null) {
                         System.out.println(e.getCodigo() + ":" + e.getDescriçãoEmenta());
                         String strConf = menu.readInput("Deseja realmente remover a ementa do cadastro (S/N):");

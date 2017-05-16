@@ -1,16 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+//[315.31.89-1] Keila Lopes Costa 
 package br.mackenzie.academico.modelo;
 
 import br.mackenzie.academico.dominio.PlanoAula;
 
-/**
- *
- * @author gabriel domenicali
- */
 public interface InterfacePlanoAula {
 
     public void criaPlanoAula(PlanoAula novoPlanoAula);

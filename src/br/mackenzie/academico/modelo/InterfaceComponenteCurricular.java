@@ -4,6 +4,7 @@ package br.mackenzie.academico.modelo;
 import br.mackenzie.academico.dominio.ComponenteCurricular;
 import br.mackenzie.academico.dominio.Ementa;
 import br.mackenzie.academico.excecao.ComponenteCurricularNaoEncontradoException;
+import br.mackenzie.academico.excecao.EmentaNaoEnconradaException;
 import java.util.List;
 
 public interface InterfaceComponenteCurricular {
@@ -18,5 +19,5 @@ public interface InterfaceComponenteCurricular {
 
     public void removeComponenteCurricular(ComponenteCurricular componente);
 
-    public Ementa recuperaEmenta(String codEmenta);
+    public Ementa recuperaEmenta(String codEmenta) throws EmentaNaoEnconradaException;
 }

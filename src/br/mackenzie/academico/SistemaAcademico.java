@@ -56,7 +56,7 @@ public class SistemaAcademico {
                     break;
                 case "5":
                     System.out.println("Manter Oferecimento");
-                    CadastroPlanoEnsino.menu();
+                    CadastroOferecimento.menu();
                     break;
                 case "5a":
                     System.out.println("Consulta oferecimentos de uma turma");

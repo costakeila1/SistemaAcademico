@@ -2,6 +2,7 @@
 package br.mackenzie.academico.modelo;
 
 import br.mackenzie.academico.dominio.PlanoEnsino;
+import br.mackenzie.academico.excecao.PlanoEnsinoNaoEncontradoException;
 import java.util.List;
 
 public interface InterfacePlanoEnsino {
@@ -10,7 +11,7 @@ public interface InterfacePlanoEnsino {
 
     public List<PlanoEnsino> listaPlanos();
 
-    public PlanoEnsino recuperaPlanoEnsino(String Ementa);
+    public PlanoEnsino recuperaPlanoEnsino(String Ementa) throws PlanoEnsinoNaoEncontradoException;
 
     public void atualizaPlanoEnsino(PlanoEnsino planoEnsino);
 

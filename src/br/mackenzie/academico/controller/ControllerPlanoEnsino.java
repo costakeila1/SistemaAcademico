@@ -2,6 +2,7 @@
 package br.mackenzie.academico.controller;
 
 import br.mackenzie.academico.dominio.PlanoEnsino;
+import br.mackenzie.academico.excecao.PlanoEnsinoNaoEncontradoException;
 import br.mackenzie.academico.modelo.InterfacePlanoEnsino;
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class ControllerPlanoEnsino {
         return iPlanoEnsino.listaPlanos();
     }
     
-    public PlanoEnsino recuperaPlanoEnsino(String codigoEmenta){
+    public PlanoEnsino recuperaPlanoEnsino(String codigoEmenta) throws PlanoEnsinoNaoEncontradoException{
         return iPlanoEnsino.recuperaPlanoEnsino(codigoEmenta);
     }    
 

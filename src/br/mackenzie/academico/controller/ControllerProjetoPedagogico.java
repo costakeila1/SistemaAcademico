@@ -3,6 +3,8 @@ package br.mackenzie.academico.controller;
 
 import br.mackenzie.academico.dominio.Curso;
 import br.mackenzie.academico.dominio.ProjetoPedagogico;
+import br.mackenzie.academico.excecao.CursoNaoEncontradoException;
+import br.mackenzie.academico.excecao.ProjetoPedagogicoNaoEncontradoException;
 import br.mackenzie.academico.modelo.InterfaceProjetoPedagogico;
 import br.mackenzie.academico.modelo.Modelo;
 import java.util.List;
@@ -15,7 +17,7 @@ public class ControllerProjetoPedagogico {
         iProjetoPedagogico = (InterfaceProjetoPedagogico) Modelo.getInstance();
     }
 
-    public void criaProjetoPedagogico(String justificativa, String perfil, String cursoNome) {
+    public void criaProjetoPedagogico(String justificativa, String perfil, String cursoNome) throws CursoNaoEncontradoException {
         Curso curso = iProjetoPedagogico.recuperaCurso(cursoNome);
         ProjetoPedagogico projeto = new ProjetoPedagogico(justificativa, perfil, curso);
         iProjetoPedagogico.criaProjetoPedagogico(projeto);
@@ -25,7 +27,7 @@ public class ControllerProjetoPedagogico {
         return iProjetoPedagogico.listaProjetosPedagogicos();
     }
 
-    public ProjetoPedagogico recuperaProjetoPedagogico(String nomeCurso) {
+    public ProjetoPedagogico recuperaProjetoPedagogico(String nomeCurso) throws ProjetoPedagogicoNaoEncontradoException {
         return iProjetoPedagogico.recuperaProjetoPedagogico(nomeCurso);
     }
 

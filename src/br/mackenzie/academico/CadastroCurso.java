@@ -3,9 +3,12 @@ package br.mackenzie.academico;
 
 import br.mackenzie.academico.controller.ControllerCurso;
 import br.mackenzie.academico.dominio.Curso;
+import br.mackenzie.academico.excecao.CursoNaoEncontradoException;
 import br.mackenzie.academico.excecao.FaculdadeNaoEncontradaException;
 import br.mackenzie.academico.utils.Menu;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CadastroCurso {
 
@@ -50,7 +53,12 @@ public class CadastroCurso {
                 case "3": {
                     System.out.println("Atualiza");
                     String strNome = menu.readInput("Entre com o nome do curso:");
-                    Curso c = controllerCurso.recuperaCurso(strNome);
+                    Curso c = null;
+                    try {
+                        c = controllerCurso.recuperaCurso(strNome);
+                    } catch (CursoNaoEncontradoException ex) {
+                        Logger.getLogger(CadastroCurso.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     if (c != null) {
                         String strnome = menu.readInput("Entre com o novo nome [" + c.getNome() + "]:");
                         c.setNome(strnome);
@@ -61,7 +69,12 @@ public class CadastroCurso {
                 case "4": {
                     System.out.println("Remove");
                     String strNome = menu.readInput("Entre com o nome do curso:");
-                    Curso c = controllerCurso.recuperaCurso(strNome);
+                    Curso c = null;
+                    try {
+                        c = controllerCurso.recuperaCurso(strNome);
+                    } catch (CursoNaoEncontradoException ex) {
+                        Logger.getLogger(CadastroCurso.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     if (c != null) {
                         System.out.println(c.getNome() + ":" + c.getFaculdade().getNome());
                         String strConf = menu.readInput("Deseja realmente remover o curso do cadastro (S/N):");

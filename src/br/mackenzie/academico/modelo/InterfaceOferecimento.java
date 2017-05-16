@@ -5,6 +5,7 @@ import br.mackenzie.academico.dominio.ComponenteCurricular;
 import br.mackenzie.academico.dominio.Oferecimento;
 import br.mackenzie.academico.dominio.Turma;
 import br.mackenzie.academico.excecao.ComponenteCurricularNaoEncontradoException;
+import br.mackenzie.academico.excecao.OferecimentoNaoEncontradoException;
 import java.util.List;
 
 public interface InterfaceOferecimento {
@@ -13,8 +14,7 @@ public interface InterfaceOferecimento {
 
     public List<Oferecimento> listaOferecimentos();
 
-    public Oferecimento recuperaOferecimento(String codigoTurma,
-            String codigoComponenteCurricular);
+    public Oferecimento recuperaOferecimento(String codigoTurma, String codigoComponenteCurricular) throws OferecimentoNaoEncontradoException ;
 
     public void atualizaOferecimento(Oferecimento oferecimento);
 

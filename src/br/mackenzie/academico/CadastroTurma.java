@@ -3,8 +3,11 @@ package br.mackenzie.academico;
 
 import br.mackenzie.academico.controller.ControllerTurma;
 import br.mackenzie.academico.dominio.Turma;
+import br.mackenzie.academico.excecao.CursoNaoEncontradoException;
 import br.mackenzie.academico.utils.Menu;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CadastroTurma {
 
@@ -33,7 +36,11 @@ public class CadastroTurma {
                     String strNome = menu.readInput("Entre com o nome do curso:");
                     String strCodigo = menu.readInput("Entre com o codigo da turma:");
                     String strPeriodo = menu.readInput("Entre com o periodo de ingresso:");
-                    controllerTurma.criaTurma(strNome, strCodigo, strPeriodo);
+                    try {
+                        controllerTurma.criaTurma(strNome, strCodigo, strPeriodo);
+                    } catch (CursoNaoEncontradoException ex) {
+                        Logger.getLogger(CadastroTurma.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     break;
                 }
                 case "2":
