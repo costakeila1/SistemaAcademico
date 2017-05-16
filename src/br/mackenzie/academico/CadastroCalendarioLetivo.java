@@ -48,13 +48,12 @@ public class CadastroCalendarioLetivo {
                     break;
                 case "3": {
                     System.out.println("Atualiza");
-                    String ano = menu.readInput("Entre com o ano levito:");
-                    String semestre = menu.readInput("Entre com o semestre letivo:");
+                    String eventos = menu.readInput("Entre com os eventos do calendário que deseja excluir: ");
                     CalendarioLetivo cl = null;
                     try {
-                        cl = controllerCalendarioLetivo.recuperaCalendario(ano, semestre);
+                        cl = controllerCalendarioLetivo.recuperaCalendarioLetivo(eventos);
                     } catch (CalendarioNaoEncontradoException ex) {
-                        System.out.println("O caléndário para o ano " + ano + "/" + semestre + "não foi encontrado!");
+                        System.out.println("O caléndário não foi encontrado!");
                     }
                     if (cl != null) {
                         String streventos = menu.readInput("Entre com os novos eventos [" + cl.getEventos() + "]:");
@@ -67,13 +66,12 @@ public class CadastroCalendarioLetivo {
                 }
                 case "4": {
                     System.out.println("Remove");
-                    String ano = menu.readInput("Entre com o ano levito:");
-                    String semestre = menu.readInput("Entre com o semestre letivo:");
+                    String eventos = menu.readInput("Entre com os eventos do calendário que deseja excluir: ");
                     CalendarioLetivo cl = null;
                     try {
-                        cl = controllerCalendarioLetivo.recuperaCalendario(ano, semestre);
+                        cl = controllerCalendarioLetivo.recuperaCalendarioLetivo(eventos);
                     } catch (CalendarioNaoEncontradoException ex) {
-                        System.out.println("O caléndário para o ano " + ano + "/" + semestre + "não foi encontrado!");
+                        System.out.println("O caléndário não foi encontrado!");
                     }
                     if (cl != null) {
                         System.out.println(cl.getEventos());

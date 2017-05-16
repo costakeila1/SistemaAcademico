@@ -44,6 +44,7 @@ public class Modelo implements
         InterfaceOferecimento,
         //InterfacePlanoAula,
         InterfacePlanoEnsino,
+        InterfaceProfessor,
         InterfaceProjetoPedagogico,
         InterfaceSemestreLetivo,
         InterfaceTurma {
@@ -230,8 +231,8 @@ public class Modelo implements
     @Override
     public CalendarioLetivo recuperaCalendarioLetivo(String eventos) throws CalendarioNaoEncontradoException {
         for(CalendarioLetivo c: calendarios){
-            if(){
-                
+            if(c.getEventos().equals(eventos)){
+                return c;
             }
         }
         throw new CalendarioNaoEncontradoException();
@@ -573,6 +574,49 @@ public class Modelo implements
         }
     }
 
+    //MANIPULANDO PROFESSORES
+    @Override
+    public void criaProfessor(Professor novoProfessor) {
+        if (professores == null) {
+            professores = new ArrayList<>();
+        }
+        professores.add(novoProfessor);
+    }
+
+    @Override
+    public List<Professor> listaProfessores() {
+        return professores;
+    }
+
+    @Override
+    public Professor recuperaProfessor(String drt) {
+        for (Professor p : professores) {
+            if (p.getDRT().equals(drt)) {
+                return p;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public void atualizaProfessor(Professor professor) {
+        for (Professor p : professores) {
+            if (p.getDRT().equals(professor.getDRT())) {
+                p.setNome(professor.getNome());
+                p.setOferecimento(professor.getOferecimento());
+            }
+        }
+    }
+
+    @Override
+    public void removeProfessor(Professor professor) {
+        for (Professor p : professores) {
+            if (p.getDRT().equals(professor.getDRT())) {
+               professores.remove(p);
+            }
+        }
+    }
+    
     //MANIPULANDO PROJETOS PEDAGÓGICOS
     @Override
     public void criaProjetoPedagogico(ProjetoPedagogico novoProjeto) {

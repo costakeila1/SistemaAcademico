@@ -26,7 +26,7 @@ public class CadastroSemestreLetivo {
         ControllerSemestreLetivo controllerSemestreLetivo = new ControllerSemestreLetivo();
 
         while (runMenuPrincipal) {
-            menu.mostraMenu(CadastroAluno.menuPrincipal);
+            menu.mostraMenu(CadastroSemestreLetivo.menuPrincipal);
             String str = menu.readInput("Sua escolha:");
             switch (str) {
                 case "1": {

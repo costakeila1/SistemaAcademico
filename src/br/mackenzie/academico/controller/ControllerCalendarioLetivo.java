@@ -9,32 +9,32 @@ import java.util.List;
 
 public class ControllerCalendarioLetivo {
     
-    private InterfaceCalendarioLetivo icalendario;
+    private InterfaceCalendarioLetivo iCalendario;
     
     public ControllerCalendarioLetivo(){
-        icalendario = (InterfaceCalendarioLetivo) Modelo.getInstance();
+        iCalendario = (InterfaceCalendarioLetivo) Modelo.getInstance();
     }
 
     public void criaCalendario(int ano, int semestre, String strEventos, String strFeriados) {
         CalendarioLetivo novoCalendarioLetivo = new CalendarioLetivo(ano, semestre, strEventos,strFeriados);
-        icalendario.criaCalendarioLetivo(novoCalendarioLetivo);
+        iCalendario.criaCalendarioLetivo(novoCalendarioLetivo);
     }
 
     public List<CalendarioLetivo> listaCalendariosLetivos() {
-        return icalendario.listaCalendariosLetivos();
+        return iCalendario.listaCalendariosLetivos();
     }
 
 
-    public CalendarioLetivo recuperaCalendario(String ano, String semestre) throws CalendarioNaoEncontradoException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public CalendarioLetivo recuperaCalendarioLetivo(String eventos) throws CalendarioNaoEncontradoException {
+        return iCalendario.recuperaCalendarioLetivo(eventos);
     }
 
     public void removeCalendarioLetivo(CalendarioLetivo cl) {
-        icalendario.removeCalendarioLetivo(cl);
+        iCalendario.removeCalendarioLetivo(cl);
     }
 
     public void atualizaCalendarioLetivo(CalendarioLetivo cl) {
-        icalendario.atualizaCalendarioLetivo(cl);
+        iCalendario.atualizaCalendarioLetivo(cl);
     }
 
     

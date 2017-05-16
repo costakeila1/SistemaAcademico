@@ -51,7 +51,7 @@ public class CadastroPlanoAula {
                     System.out.println("Lista Planos de Aula");
                     List<PlanoAula> planosAulas = controllerPlanoAula.listaPlanosAulas();
                     for (PlanoAula pa : planosAulas) {
-                        //System.out.println(pa.getBibliografiaBasica() + ":" + pa.getBibliografiaComplementar() + ":" + pa.getEmenta() + ":" + pa.getConceitos() + ":" + pa.getConteudoProgramatico() + ":" + pa.getCriteriosAvaliacao() + ":" + pa.getHabilidades() + ":" + pa.getMetodologia() + ":" + pa.getValores() + ":" + pa.getCalendarioLetivo() + ":" + pa.getOferecimento() + ":" + pa.getPlanejamentoAula());
+                        System.out.println(pa.getBibliografiaBasica() + ":" + pa.getBibliografiaComplementar());
                     }
                     break;
                 case "3": {
@@ -60,7 +60,7 @@ public class CadastroPlanoAula {
                     PlanoAula pa = controllerPlanoAula.recuperaPlanoAula(strEmenta);
                     if (pa != null) {
                         String strCalendarioLetivo = menu.readInput("Entre com os novos calendarios [" + pa.getCalendarioLetivo() + "]:");
-                        //String strOferecimento = menu.readInput("Entre com o novo oferecimento [" + pa.getConteudoProgramatico() + "]:");
+                        String strOferecimento = menu.readInput("Entre com o novo oferecimento [" + pa.getConteudoProgramatico() + "]:");
                         String strPlanejamentoAula = menu.readInput("Entre com os novos critérios [" + pa.getPlanejamentoAula() + "]:");
                         pa.setPlanejamentoAula(strPlanejamentoAula);
                         controllerPlanoAula.atualizaPlanoAula(pa);
@@ -72,7 +72,7 @@ public class CadastroPlanoAula {
                     String strEmenta = menu.readInput("Entre com a Ementa do plano de ensino:");
                     PlanoAula pa = controllerPlanoAula.recuperaPlanoAula(strEmenta);
                     if (pa != null) {
-                        //System.out.println(pa.getBibliografiaBasica() + ":" + pa.getBibliografiaComplementar() + ":" + pa.getEmenta() + ":" + pa.getConceitos() + ":" + pa.getConteudoProgramatico() + ":" + pa.getCriteriosAvaliacao() + ":" + pa.getHabilidades() + ":" + pa.getMetodologia() + ":" + pa.getValores() + ":" + pa.getCalendarioLetivo() + ":" + pa.getOferecimento() + ":" + pa.getPlanejamentoAula());
+                        System.out.println(pa.getBibliografiaBasica() + ":" + pa.getBibliografiaComplementar());
                         String strConf = menu.readInput("Deseja realmente remover o Aluno do cadastro (S/N):");
                         if (strConf.equals("S")) {
                             controllerPlanoAula.removePlanoAula(pa);
