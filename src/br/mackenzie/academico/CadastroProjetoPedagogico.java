@@ -31,40 +31,42 @@ public class CadastroProjetoPedagogico {
             switch (str) {
                 case "1": {
                     System.out.println("Inclusao de registro");
-                    String strNome = menu.readInput("Entre com o nome do curso:");
-                    String strCodigo = menu.readInput("Entre com o codigo da turma:");
-                    String strPeriodo = menu.readInput("Entre com o periodo de ingresso:");
-                    controllerProjetoPedagogico.criaProjetoPedagogico(strNome, strCodigo, strPeriodo);
+                    String curso = menu.readInput("Entre com o nome do curso:");
+                    String justificativa = menu.readInput("Entre com a justificativa:");
+                    String perfil = menu.readInput("Entre com o perfil:");
+                    controllerProjetoPedagogico.criaProjetoPedagogico(justificativa, perfil, curso);
                     break;
                 }
                 case "2":
                     System.out.println("Lista Projetos Pedagógicos");
                     List<ProjetoPedagogico> projetosPedagogicos = controllerProjetoPedagogico.listaProjetosPedagogicos();
                     for (ProjetoPedagogico p : projetosPedagogicos) {
-                        //System.out.println(t.getCodigo() + ":" + t.getPeriodoDeIngresso() + ":" + t.getCurso().getNome());
+                        System.out.println(p.getCurso().getNome() + " : " + p.getPerfil() + " : " + p.getJustificativa());
                     }
                     break;
                 case "3": {
                     System.out.println("Atualiza");
-                    String strCodigo = menu.readInput("Entre com o codigo da Turma:");
-                    ProjetoPedagogico p = controllerProjetoPedagogico.recuperaProjetoPedagogico(strCodigo);
+                    String nomeCurso = menu.readInput("Entre com o nome do curso:");
+                    ProjetoPedagogico p = controllerProjetoPedagogico.recuperaProjetoPedagogico(nomeCurso);
                     if (p != null) {
-                        //String strPeriodo = menu.readInput("Entre com o novo periodo [" + t.getPeriodoDeIngresso() + "]:");
-                        //t.setPeriodoDeIngresso(strPeriodo);
-                        //controllerTurma.atualizaTurma(t);
+                        String justificativa = menu.readInput("Entre com a nova justificativa:");
+                        String perfil = menu.readInput("Entre com o novo perfil:");
+                        p.setJustificativa(justificativa);
+                        p.setPerfil(perfil);
+                        controllerProjetoPedagogico.atualizaProjetoPedagogico(p);
                     }
                     break;
                 }
                 case "4": {
                     System.out.println("Remove");
-                    String strCodigo = menu.readInput("Entre com o codigo da turma:");
-                    ProjetoPedagogico p = controllerProjetoPedagogico.recuperaProjetoPedagogico(strCodigo);
+                    String nomeCurso = menu.readInput("Entre com o nome do curso:");
+                    ProjetoPedagogico p = controllerProjetoPedagogico.recuperaProjetoPedagogico(nomeCurso);
                     if (p != null) {
-                        //System.out.println(t.getCodigo() + ":" + t.getCurso().getNome());
-                        //String strConf = menu.readInput("Deseja realmente remover a turma do cadastro (S/N):");
-                        //if (strConf.equals("S")) {
-                        //    controllerTurma.removeTurma(t);
-                        //}
+                        System.out.println(p.getCurso().getNome() + " : " + p.getPerfil() + " : " + p.getJustificativa());
+                        String strConf = menu.readInput("Deseja realmente remover o projeto pedagógico (S/N):");
+                        if (strConf.equals("S")) {
+                            controllerProjetoPedagogico.removeProjetoPedagogico(p);
+                        }
                     }
                     break;
                 }

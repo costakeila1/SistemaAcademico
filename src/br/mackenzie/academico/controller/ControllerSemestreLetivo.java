@@ -35,5 +35,4 @@ public class ControllerSemestreLetivo {
     public void removeSemestreLetivo(SemestreLetivo s) {
         iSemestreLetivo.removeSemestreLetivo(s);
     }
-    
 }

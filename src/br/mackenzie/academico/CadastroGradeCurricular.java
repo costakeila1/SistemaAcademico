@@ -3,7 +3,6 @@ package br.mackenzie.academico;
 
 import br.mackenzie.academico.controller.ControllerGradeCurricular;
 import br.mackenzie.academico.dominio.GradeCurricular;
-import br.mackenzie.academico.modelo.Modelo;
 import br.mackenzie.academico.utils.Menu;
 import java.util.List;
 

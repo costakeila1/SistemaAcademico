@@ -44,6 +44,7 @@ public class Modelo implements
         InterfaceOferecimento,
         //InterfacePlanoAula,
         InterfacePlanoEnsino,
+        InterfaceProjetoPedagogico,
         InterfaceSemestreLetivo,
         InterfaceTurma {
 
@@ -169,7 +170,6 @@ public class Modelo implements
         }
     }
 
-    
     // MANIPULANDO ALUNOS
     @Override
     public void criaAluno(Aluno novoAluno) {
@@ -229,7 +229,12 @@ public class Modelo implements
 
     @Override
     public CalendarioLetivo recuperaCalendarioLetivo(String eventos) throws CalendarioNaoEncontradoException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for(CalendarioLetivo c: calendarios){
+            if(){
+                
+            }
+        }
+        throw new CalendarioNaoEncontradoException();
     }
 
     @Override
@@ -521,49 +526,6 @@ public class Modelo implements
         }
     }
 
-    // MANIPULANDO TURMAS
-    @Override
-    public void criaTurma(Turma turma) {
-        if (turmas == null) {
-            turmas = new ArrayList<>();
-        }
-        turmas.add(turma);
-    }
-
-    @Override
-    public List<Turma> listaTurmas() {
-        return turmas;
-    }
-
-    @Override
-    public Turma recuperaTurma(String codigo) {
-        for (Turma t : turmas) {
-            if (t.getCodigo().trim().equals(codigo.trim())) {
-                return t;
-            }
-        }
-        return null;
-    }
-
-    @Override
-    public void atualizaTurma(Turma turma) {
-        for (Turma t : turmas) {
-            if (t.getCodigo().trim().equals(turma.getCodigo().trim())) {
-                t.setPeriodoDeIngresso(turma.getPeriodoDeIngresso());
-            }
-        }
-    }
-
-    @Override
-    public void removeTurma(Turma turma) {
-        for (Turma t : turmas) {
-            if (t.getCodigo().trim().equals(turma.getCodigo().trim())) {
-                turmas.remove(t);
-                break;
-            }
-        }
-    }
-
     //MANUPILANDO PLANOS DE ENSINO
     @Override
     public void criaPlanoEnsino(PlanoEnsino novoPlanoEnsino) {
@@ -611,6 +573,49 @@ public class Modelo implements
         }
     }
 
+    //MANIPULANDO PROJETOS PEDAGÓGICOS
+    @Override
+    public void criaProjetoPedagogico(ProjetoPedagogico novoProjeto) {
+        if (projetos == null) {
+            projetos = new ArrayList<>();
+        }
+        projetos.add(novoProjeto);
+    }
+
+    @Override
+    public List<ProjetoPedagogico> listaProjetosPedagogicos() {
+        return projetos;
+    }
+
+    @Override
+    public ProjetoPedagogico recuperaProjetoPedagogico(String nomeCurso) {
+        for (ProjetoPedagogico p : projetos) {
+            if (p.getCurso().getNome().equals(nomeCurso)) {
+                return p;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public void atualizaProjetoPedagogico(ProjetoPedagogico projeto) {
+        for (ProjetoPedagogico p : projetos) {
+            if (p.getCurso().getNome().equals(projeto.getCurso().getNome())) {
+                p.setJustificativa(projeto.getJustificativa());
+                p.setPerfil(projeto.getPerfil());
+            }
+        }
+    }
+
+    @Override
+    public void removeProjetoPedagogico(ProjetoPedagogico projeto) {
+        for (ProjetoPedagogico p : projetos) {
+            if (p.getCurso().getNome().equals(projeto.getCurso().getNome())) {
+                projetos.remove(p);
+            }
+        }
+    }
+
     //MANIPULANDO SEMESTRES LETIVOS
     @Override
     public void criaSemestreLetivo(SemestreLetivo novoSemestre) {
@@ -643,5 +648,48 @@ public class Modelo implements
     @Override
     public void removeSemestreLetivo(SemestreLetivo s) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    // MANIPULANDO TURMAS
+    @Override
+    public void criaTurma(Turma turma) {
+        if (turmas == null) {
+            turmas = new ArrayList<>();
+        }
+        turmas.add(turma);
+    }
+
+    @Override
+    public List<Turma> listaTurmas() {
+        return turmas;
+    }
+
+    @Override
+    public Turma recuperaTurma(String codigo) {
+        for (Turma t : turmas) {
+            if (t.getCodigo().trim().equals(codigo.trim())) {
+                return t;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public void atualizaTurma(Turma turma) {
+        for (Turma t : turmas) {
+            if (t.getCodigo().trim().equals(turma.getCodigo().trim())) {
+                t.setPeriodoDeIngresso(turma.getPeriodoDeIngresso());
+            }
+        }
+    }
+
+    @Override
+    public void removeTurma(Turma turma) {
+        for (Turma t : turmas) {
+            if (t.getCodigo().trim().equals(turma.getCodigo().trim())) {
+                turmas.remove(t);
+                break;
+            }
+        }
     }
 }

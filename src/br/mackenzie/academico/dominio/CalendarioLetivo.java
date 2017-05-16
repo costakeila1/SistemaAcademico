@@ -25,6 +25,5 @@ public class CalendarioLetivo extends SemestreLetivo implements java.io.Serializ
 
     public void setFeriados(String feriados) {
         this.feriados = feriados;
-    }
-        
+    }        
 }
