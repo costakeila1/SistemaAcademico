@@ -16,7 +16,7 @@ public class CadastroComponenteCurricular {
         "_/_/     (2) Listar Componentes Curriculares cadastrados.",
         "_/_/     (3) Atualizar Componente Curricular.",
         "_/_/     (4) Remover Componente Curricular do cadastro.",
-        "_/_/     (0) Sai do componente.",
+        "_/_/     (0) Voltar.",
         "_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/"
     };
 
@@ -33,7 +33,7 @@ public class CadastroComponenteCurricular {
                     System.out.println("Inclusao de registro");
                     String strCodigo = menu.readInput("Entre com o Código do Componente Curricular:");
                     String strNome = menu.readInput("Entre com o Nome do Componente Curricular:");
-                    String codEmenta = menu.readInput("Entre com o texto da ementa:");
+                    String codEmenta = menu.readInput("Entre com o código da ementa:");
                     controllerComponenteCurricular.criaComponenteCurricular(strCodigo, strNome, codEmenta);
                     break;
                 }

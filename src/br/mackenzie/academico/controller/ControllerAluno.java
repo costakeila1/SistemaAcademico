@@ -4,19 +4,20 @@ package br.mackenzie.academico.controller;
 import br.mackenzie.academico.dominio.Aluno;
 import br.mackenzie.academico.dominio.Turma;
 import br.mackenzie.academico.excecao.AlunoNaoEncontradoException;
+import br.mackenzie.academico.excecao.TurmaNaoEncontradaException;
 import br.mackenzie.academico.modelo.InterfaceAluno;
 import br.mackenzie.academico.modelo.Modelo;
 import java.util.List;
 
 public class ControllerAluno {
-    
+
     private InterfaceAluno iAluno;
-    
-    public ControllerAluno(){
+
+    public ControllerAluno() {
         iAluno = (InterfaceAluno) Modelo.getInstance();
     }
 
-    public void criaAluno(String nome, String tia, String codigo_turma){
+    public void criaAluno(String nome, String tia, String codigo_turma) throws TurmaNaoEncontradaException {
         Aluno novoAluno = new Aluno(iAluno.recuperaTurma(codigo_turma));
         novoAluno.setNome(nome);
         novoAluno.setTIA(tia);
@@ -27,7 +28,7 @@ public class ControllerAluno {
         return iAluno.listaAlunos();
     }
 
-    public Aluno recuperaAluno(String tia) throws AlunoNaoEncontradoException{
+    public Aluno recuperaAluno(String tia) throws AlunoNaoEncontradoException {
         return iAluno.recuperaAluno(tia);
     }
 
@@ -39,8 +40,8 @@ public class ControllerAluno {
         iAluno.removeAluno(aluno);
     }
 
-    public Turma recuperaTurma(String strturma) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Turma recuperaTurma(String codigo) throws TurmaNaoEncontradaException {
+        return iAluno.recuperaTurma(codigo);
     }
 
 }

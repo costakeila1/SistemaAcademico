@@ -5,6 +5,7 @@ import br.mackenzie.academico.controller.ControllerAluno;
 import br.mackenzie.academico.dominio.Aluno;
 import br.mackenzie.academico.dominio.Turma;
 import br.mackenzie.academico.excecao.AlunoNaoEncontradoException;
+import br.mackenzie.academico.excecao.TurmaNaoEncontradaException;
 import br.mackenzie.academico.utils.Menu;
 import java.util.List;
 
@@ -12,12 +13,12 @@ public class CadastroAluno {
 
     public static String[] menuPrincipal = {
         "_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/",
-        "_/_/     Menu Principal",
+        "_/_/     CADASTRO ALUNO",
         "_/_/     (1) Adicionar novo aluno.",
         "_/_/     (2) Listar alunos cadastrados.",
         "_/_/     (3) Atualizar aluno.",
         "_/_/     (4) Remover aluno do cadastro.",
-        "_/_/     (0) Sai do aluno.",
+        "_/_/     (0) Voltar.",
         "_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/"
     };
 
@@ -35,7 +36,11 @@ public class CadastroAluno {
                     String nome = menu.readInput("Entre com o nome do aluno:");
                     String tia = menu.readInput("Entre com o TIA do aluno:");
                     String codigo_turma = menu.readInput("Entre com a turma do aluno (código):");
-                    controllerAluno.criaAluno(nome, tia, codigo_turma);
+                    try {
+                        controllerAluno.criaAluno(nome, tia, codigo_turma);
+                    } catch (TurmaNaoEncontradaException ex) {
+                        System.out.println("Turma não encontrada!");
+                    }
                     break;
                 }
                 case "2": {
@@ -61,7 +66,12 @@ public class CadastroAluno {
                         String strnome = menu.readInput("Entre com o novo nome [" + a.getNome() + "]:");
                         a.setNome(strnome);
                         String strturma = menu.readInput("Entre com o código da nova turma [" + a.getTurma().getCodigo() + "] ");
-                        Turma turma = controllerAluno.recuperaTurma(strturma);
+                        Turma turma = null;
+                        try {
+                            turma = controllerAluno.recuperaTurma(strturma);
+                        } catch (TurmaNaoEncontradaException ex) {
+                            System.out.println("Turma não encontrada!");
+                        }
                         a.setTurma(turma);
                         controllerAluno.atualizaAluno(a);
                     }

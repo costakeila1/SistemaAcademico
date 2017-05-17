@@ -8,8 +8,20 @@ public class PlanoAula extends PlanoEnsino implements Serializable {
     private CalendarioLetivo calendarioLetivo;
     private Oferecimento oferecimento;
     
-    public PlanoAula(CalendarioLetivo calendarioLetivo, Oferecimento oferecimento, String planejamentoAula, String bibliografiaBasica, String bibliografiaComplementar, String ementa, String conceitos, String conteudoProgramatico, String criteriosAvaliacao, String habilidades, String metodologia, String valores) {
-        super(bibliografiaBasica, bibliografiaComplementar, ementa, conceitos, conteudoProgramatico, criteriosAvaliacao, habilidades, metodologia, valores);
+    public PlanoAula(CalendarioLetivo calendarioLetivo,
+                     Oferecimento oferecimento, 
+                     String planejamentoAula, 
+                     String bBasica, 
+                     String bComplementar, 
+                     String ementa, 
+                     String conceitos, 
+                     String conteudoProgramatico, 
+                     String criteriosAvaliacao, 
+                     String habilidades, 
+                     String metodologia, 
+                     String valores) {
+        super(bBasica, bComplementar, ementa, conceitos, conteudoProgramatico, 
+              criteriosAvaliacao, habilidades, metodologia, valores);
         this.planejamentoAula = planejamentoAula;
         this.calendarioLetivo = calendarioLetivo;
         this.oferecimento = oferecimento;

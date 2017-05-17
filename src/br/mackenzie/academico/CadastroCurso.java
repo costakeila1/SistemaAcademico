@@ -7,8 +7,6 @@ import br.mackenzie.academico.excecao.CursoNaoEncontradoException;
 import br.mackenzie.academico.excecao.FaculdadeNaoEncontradaException;
 import br.mackenzie.academico.utils.Menu;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class CadastroCurso {
 
@@ -57,7 +55,7 @@ public class CadastroCurso {
                     try {
                         c = controllerCurso.recuperaCurso(strNome);
                     } catch (CursoNaoEncontradoException ex) {
-                        Logger.getLogger(CadastroCurso.class.getName()).log(Level.SEVERE, null, ex);
+                        System.out.println("Curso não encontrado!");
                     }
                     if (c != null) {
                         String strnome = menu.readInput("Entre com o novo nome [" + c.getNome() + "]:");
@@ -73,7 +71,7 @@ public class CadastroCurso {
                     try {
                         c = controllerCurso.recuperaCurso(strNome);
                     } catch (CursoNaoEncontradoException ex) {
-                        Logger.getLogger(CadastroCurso.class.getName()).log(Level.SEVERE, null, ex);
+                        System.out.println("Curso não encontrado!");
                     }
                     if (c != null) {
                         System.out.println(c.getNome() + ":" + c.getFaculdade().getNome());
@@ -81,7 +79,6 @@ public class CadastroCurso {
                         if (strConf.equals("S")) {
                             controllerCurso.removeCurso(c);
                         }
-
                     }
                     break;
                 }
@@ -93,6 +90,5 @@ public class CadastroCurso {
                     break;
             }
         }
-
     }
 }

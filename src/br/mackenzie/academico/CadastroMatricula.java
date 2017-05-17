@@ -79,7 +79,6 @@ public class CadastroMatricula {
                     }
                     break;
                 }
-
                 case "4": {
                     System.out.println("Remove");
                     String tia = menu.readInput("Entre com o TIA do aluno:");

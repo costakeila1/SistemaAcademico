@@ -8,8 +8,6 @@ import br.mackenzie.academico.excecao.EmentaNaoEnconradaException;
 import br.mackenzie.academico.modelo.InterfaceComponenteCurricular;
 import br.mackenzie.academico.modelo.Modelo;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class ControllerComponenteCurricular {
 
@@ -24,7 +22,7 @@ public class ControllerComponenteCurricular {
         try {
             ementa = iComponente.recuperaEmenta(codEmenta);
         } catch (EmentaNaoEnconradaException ex) {
-            Logger.getLogger(ControllerComponenteCurricular.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Ementa não encontrada!");
         }
         ComponenteCurricular novoComponente = new ComponenteCurricular(ementa);
         novoComponente.setCodigo(strCodigo);
@@ -45,7 +43,7 @@ public class ControllerComponenteCurricular {
         try {
             ementa = iComponente.recuperaEmenta(codEmenta);
         } catch (EmentaNaoEnconradaException ex) {
-            Logger.getLogger(ControllerComponenteCurricular.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Ementa não encontrada!");
         }
         c.setNome(strNome);
         c.setEmenta(ementa);

@@ -2,9 +2,16 @@
 package br.mackenzie.academico;
 
 import br.mackenzie.academico.controller.ControllerPlanoAula;
+import br.mackenzie.academico.dominio.CalendarioLetivo;
+import br.mackenzie.academico.dominio.Oferecimento;
 import br.mackenzie.academico.dominio.PlanoAula;
+import br.mackenzie.academico.excecao.CalendarioNaoEncontradoException;
+import br.mackenzie.academico.excecao.OferecimentoNaoEncontradoException;
+import br.mackenzie.academico.excecao.PlanoAulaNaoEncontradoException;
 import br.mackenzie.academico.utils.Menu;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CadastroPlanoAula {
 
@@ -56,21 +63,52 @@ public class CadastroPlanoAula {
                     break;
                 case "3": {
                     System.out.println("Atualiza Planos de Ensino");
-                    String strEmenta = menu.readInput("Entre com a ementa:");
-                    PlanoAula pa = controllerPlanoAula.recuperaPlanoAula(strEmenta);
+                    String cTurma = menu.readInput("Entre com a turma:");
+                    String cComponente = menu.readInput("Entre com o codigo do componente curricular");
+                    PlanoAula pa = null;
+                    try {
+                        pa = controllerPlanoAula.recuperaPlanoAula(cTurma, cComponente);
+                    } catch (PlanoAulaNaoEncontradoException ex) {
+                        System.out.println("Plano aula não encontrado!");
+                    } catch (OferecimentoNaoEncontradoException ex) {
+                        System.out.println("Oferecimento não encontrado!");
+                    }
                     if (pa != null) {
-                        String strCalendarioLetivo = menu.readInput("Entre com os novos calendarios [" + pa.getCalendarioLetivo() + "]:");
-                        String strOferecimento = menu.readInput("Entre com o novo oferecimento [" + pa.getConteudoProgramatico() + "]:");
-                        String strPlanejamentoAula = menu.readInput("Entre com os novos critérios [" + pa.getPlanejamentoAula() + "]:");
-                        pa.setPlanejamentoAula(strPlanejamentoAula);
+                        String eventos = menu.readInput("Eventos do calendário:");
+                        String turma = menu.readInput("Entre com a turma do novo oferecimento: ");
+                        String componente = menu.readInput("Entre com o componente curricular do novo oferecimento: ");
+                        String planejamentoAula = menu.readInput("Entre com o novo planejamento de aulas: ");
+                        pa.setPlanejamentoAula(planejamentoAula);
+                        CalendarioLetivo c = null;
+                        try {
+                            c = controllerPlanoAula.recuperaCalendarioLetivo(eventos);
+                        } catch (CalendarioNaoEncontradoException ex) {
+                            System.out.println("Calendário Letivo não encontrado!");
+                        }
+                        Oferecimento oferecimento = null;
+                        try {
+                            oferecimento = controllerPlanoAula.recuperaOferecimento(turma, componente);
+                        } catch (OferecimentoNaoEncontradoException ex) {
+                            System.out.println("Oferecimento não encontrado!");
+                        }
+                        pa.setOferecimento(oferecimento);
+                        pa.setCalendarioLetivo(c);
                         controllerPlanoAula.atualizaPlanoAula(pa);
                     }
                     break;
                 }
                 case "4": {
                     System.out.println("Remove");
-                    String strEmenta = menu.readInput("Entre com a Ementa do plano de ensino:");
-                    PlanoAula pa = controllerPlanoAula.recuperaPlanoAula(strEmenta);
+                    String cTurma = menu.readInput("Entre com a turma:");
+                    String cComponente = menu.readInput("Entre com o codigo do componente curricular");
+                    PlanoAula pa = null;
+                    try {
+                        pa = controllerPlanoAula.recuperaPlanoAula(cTurma, cComponente);
+                    } catch (PlanoAulaNaoEncontradoException ex) {
+                        System.out.println("Plano aula não encontrado!");
+                    } catch (OferecimentoNaoEncontradoException ex) {
+                        System.out.println("Oferecimento não encontrado!");
+                    }
                     if (pa != null) {
                         System.out.println(pa.getBibliografiaBasica() + ":" + pa.getBibliografiaComplementar());
                         String strConf = menu.readInput("Deseja realmente remover o Aluno do cadastro (S/N):");

@@ -4,6 +4,7 @@ package br.mackenzie.academico;
 import br.mackenzie.academico.controller.ControllerGradeCurricular;
 import br.mackenzie.academico.dominio.GradeCurricular;
 import br.mackenzie.academico.excecao.GradeCurricularNaoEncontradaException;
+import br.mackenzie.academico.excecao.ProjetoPedagogicoNaoEncontradoException;
 import br.mackenzie.academico.utils.Menu;
 import java.util.List;
 import java.util.logging.Level;
@@ -35,9 +36,13 @@ public class CadastroGradeCurricular {
             switch (str) {
                 case "1": {
                     System.out.println("Inclusao de registro");
-                    String strProjetoPedagogico = menu.readInput("Entre com o projeto pedagogico:");
-                    String strInformacoes = menu.readInput("Entre com as informações:");
-                    controllerGradeCurricular.criaGradeCurricular(strProjetoPedagogico, strInformacoes);
+                    String nomeCurso = menu.readInput("Entre com o nome do curso:");
+                    String informacoes = menu.readInput("Entre com as informações:");
+                    try {
+                        controllerGradeCurricular.criaGradeCurricular(nomeCurso, informacoes);
+                    } catch (ProjetoPedagogicoNaoEncontradoException ex) {
+                        System.out.println("Projeto pedagógico não encontrado!");
+                    }
                     break;
                 }
                 case "2":

@@ -10,32 +10,32 @@ import java.util.List;
 
 public class ControllerCurso {
     
-    private InterfaceCurso icurso;
+    private InterfaceCurso iCurso;
     
     public ControllerCurso(){
-        icurso = (InterfaceCurso) Modelo.getInstance();
+        iCurso = (InterfaceCurso) Modelo.getInstance();
     }
 
     public void criaCurso(String strCnpj, String strNome) throws FaculdadeNaoEncontradaException {
-        Curso novoCurso = new Curso(icurso.recuperaFaculdade(strCnpj));
+        Curso novoCurso = new Curso(iCurso.recuperaFaculdade(strCnpj));
         novoCurso.setNome(strNome);
-        icurso.criaCurso(novoCurso);
+        iCurso.criaCurso(novoCurso);
     }
 
     public List<Curso> listaCursos() {
-        return icurso.listaCursos();
+        return iCurso.listaCursos();
     }
 
     public Curso recuperaCurso(String cpnj) throws CursoNaoEncontradoException {
-        return icurso.recuperaCurso(cpnj);
+        return iCurso.recuperaCurso(cpnj);
     }
 
     public void atualizaCurso(Curso curso) {
-        icurso.atualizaCurso(curso);
+        iCurso.atualizaCurso(curso);
     }
 
     public void removeCurso(Curso curso) {
-        icurso.removeCurso(curso);
+        iCurso.removeCurso(curso);
     }
 
 }

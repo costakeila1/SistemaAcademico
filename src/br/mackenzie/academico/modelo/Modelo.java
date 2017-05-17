@@ -29,6 +29,7 @@ import br.mackenzie.academico.excecao.PlanoAulaNaoEncontradoException;
 import br.mackenzie.academico.excecao.PlanoEnsinoNaoEncontradoException;
 import br.mackenzie.academico.excecao.ProfessorNaoEncontradoException;
 import br.mackenzie.academico.excecao.ProjetoPedagogicoNaoEncontradoException;
+import br.mackenzie.academico.excecao.TurmaNaoEncontradaException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -238,8 +239,8 @@ public class Modelo implements
 
     @Override
     public CalendarioLetivo recuperaCalendarioLetivo(String eventos) throws CalendarioNaoEncontradoException {
-        for(CalendarioLetivo c: calendarios){
-            if(c.getEventos().equals(eventos)){
+        for (CalendarioLetivo c : calendarios) {
+            if (c.getEventos().equals(eventos)) {
                 return c;
             }
         }
@@ -249,13 +250,20 @@ public class Modelo implements
     @Override
     public void removeCalendarioLetivo(CalendarioLetivo cl) {
         for (CalendarioLetivo c : calendarios) {
-            //(cl.getrted yet."); //To change body of generated methods, choose Tools | Templates.
+            if (cl.equals(c)) {
+                calendarios.remove(c);
+            }
         }
     }
 
     @Override
     public void atualizaCalendarioLetivo(CalendarioLetivo cl) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for (CalendarioLetivo c : calendarios) {
+            if (cl.equals(c)) {
+                c.setEventos(cl.getEventos());
+                c.setFeriados(cl.getFeriados());
+            }
+        }
     }
 
     // MANIPULANDO COMPONENTES CURRICULARES
@@ -279,7 +287,7 @@ public class Modelo implements
                 return c;
             }
         }
-        return null;
+        throw new ComponenteCurricularNaoEncontradoException();
     }
 
     @Override
@@ -322,7 +330,7 @@ public class Modelo implements
                 return c;
             }
         }
-        return null;
+        throw new CursoNaoEncontradoException();
     }
 
     @Override
@@ -365,7 +373,7 @@ public class Modelo implements
                 return e;
             }
         }
-        return null;
+        throw new EmentaNaoEnconradaException();
     }
 
     @Override
@@ -448,7 +456,7 @@ public class Modelo implements
     public void removeGradeCurricular(GradeCurricular gradeCurricular) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     // MANIPULANDO MATRÍCULAS
     @Override
     public void criaMatricula(Matricula novaMatricula) {
@@ -470,7 +478,7 @@ public class Modelo implements
                 return m;
             }
         }
-        return null;
+        throw new MatriculaNaoEncontradaException();
     }
 
     @Override
@@ -537,7 +545,7 @@ public class Modelo implements
                 return o;
             }
         }
-        return null;
+        throw new OferecimentoNaoEncontradoException();
     }
 
     @Override
@@ -563,29 +571,34 @@ public class Modelo implements
 
     //MANIPULANDO PLANOS DE AULA
     @Override
-    public void criaPlanoAula(PlanoAula novoPlanoAula){
-        if(planosAula ==null){
+    public void criaPlanoAula(PlanoAula novoPlanoAula) {
+        if (planosAula == null) {
             planosAula = new ArrayList<>();
         }
         planosAula.add(novoPlanoAula);
     }
-    
-    public List<PlanoAula> listaPlanosAula(){
+
+    public List<PlanoAula> listaPlanosAula() {
         return planosAula;
     }
-    
-    public PlanoAula recuperaPlanoAula() throws PlanoAulaNaoEncontradoException {
+
+    public PlanoAula recuperaPlanoAula(Oferecimento oferecimento) throws PlanoAulaNaoEncontradoException {
+        for(PlanoAula pa: planosAula){
+            if(pa.getOferecimento().equals(oferecimento)){
+                return pa;
+            }
+        }
+        throw new PlanoAulaNaoEncontradoException();
+    }
+
+    public void atualizaPlanoAula(PlanoAula planoAula) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    public void atualizaPlanoAula(PlanoAula planoAula){
+
+    public void removePlanoAula(PlanoAula planoAula) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    public void removePlanoAula(PlanoAula planoAula){
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
+
     //MANUPILANDO PLANOS DE ENSINO
     @Override
     public void criaPlanoEnsino(PlanoEnsino novoPlanoEnsino) {
@@ -654,7 +667,7 @@ public class Modelo implements
                 return p;
             }
         }
-        return null;
+        throw new ProfessorNaoEncontradoException();
     }
 
     @Override
@@ -671,11 +684,11 @@ public class Modelo implements
     public void removeProfessor(Professor professor) {
         for (Professor p : professores) {
             if (p.getDRT().equals(professor.getDRT())) {
-               professores.remove(p);
+                professores.remove(p);
             }
         }
     }
-    
+
     //MANIPULANDO PROJETOS PEDAGÓGICOS
     @Override
     public void criaProjetoPedagogico(ProjetoPedagogico novoProjeto) {
@@ -697,7 +710,7 @@ public class Modelo implements
                 return p;
             }
         }
-        return null;
+        throw new ProjetoPedagogicoNaoEncontradoException();
     }
 
     @Override
@@ -768,7 +781,7 @@ public class Modelo implements
     }
 
     @Override
-    public Turma recuperaTurma(String codigo) {
+    public Turma recuperaTurma(String codigo) throws TurmaNaoEncontradaException {
         for (Turma t : turmas) {
             if (t.getCodigo().trim().equals(codigo.trim())) {
                 return t;

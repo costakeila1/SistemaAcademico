@@ -9,31 +9,31 @@ import java.util.List;
 
 public class ControllerFaculdade {
 
-    private InterfaceFaculdade ifaculdade;
+    private InterfaceFaculdade iFaculdade;
 
     public ControllerFaculdade() {
-        ifaculdade = (InterfaceFaculdade) Modelo.getInstance();
+        iFaculdade = (InterfaceFaculdade) Modelo.getInstance();
     }
 
     public void criaFaculdade(String strCnpj, String strEndereco, String strNome, String strTelefone) {
         Faculdade novaFaculdade = new Faculdade(strCnpj, strEndereco, strNome, strTelefone);
-        ifaculdade.criaFaculdade(novaFaculdade);
+        iFaculdade.criaFaculdade(novaFaculdade);
     }
 
     public List<Faculdade> listaFaculdades() {
-        return ifaculdade.listaFaculdades();
+        return iFaculdade.listaFaculdades();
     }
 
     public Faculdade recuperaFaculdade(String cpnj) throws FaculdadeNaoEncontradaException {
-        return ifaculdade.recuperaFaculdade(cpnj);
+        return iFaculdade.recuperaFaculdade(cpnj);
     }
 
     public void atualizaFaculdade(Faculdade faculdade) {
-        ifaculdade.atualizaFaculdade(faculdade);
+        iFaculdade.atualizaFaculdade(faculdade);
     }
 
     public void removeFaculdade(Faculdade faculdade) {
-        ifaculdade.removeFaculdade(faculdade);
+        iFaculdade.removeFaculdade(faculdade);
     }
 
 }

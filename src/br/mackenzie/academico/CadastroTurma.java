@@ -4,10 +4,9 @@ package br.mackenzie.academico;
 import br.mackenzie.academico.controller.ControllerTurma;
 import br.mackenzie.academico.dominio.Turma;
 import br.mackenzie.academico.excecao.CursoNaoEncontradoException;
+import br.mackenzie.academico.excecao.TurmaNaoEncontradaException;
 import br.mackenzie.academico.utils.Menu;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class CadastroTurma {
 
@@ -39,7 +38,7 @@ public class CadastroTurma {
                     try {
                         controllerTurma.criaTurma(strNome, strCodigo, strPeriodo);
                     } catch (CursoNaoEncontradoException ex) {
-                        Logger.getLogger(CadastroTurma.class.getName()).log(Level.SEVERE, null, ex);
+                        System.out.println("Curso não encontrado!");
                     }
                     break;
                 }
@@ -53,7 +52,12 @@ public class CadastroTurma {
                 case "3": {
                     System.out.println("Atualiza");
                     String strCodigo = menu.readInput("Entre com o codigo da Turma:");
-                    Turma t = controllerTurma.recuperaTurma(strCodigo);
+                    Turma t = null;
+                    try {
+                        t = controllerTurma.recuperaTurma(strCodigo);
+                    } catch (TurmaNaoEncontradaException ex) {
+                        System.out.println("Turma não encontrada!");
+                    }
                     if (t != null) {
                         String strPeriodo = menu.readInput("Entre com o novo periodo [" + t.getPeriodoDeIngresso() + "]:");
                         t.setPeriodoDeIngresso(strPeriodo);
@@ -64,7 +68,12 @@ public class CadastroTurma {
                 case "4": {
                     System.out.println("Remove");
                     String strCodigo = menu.readInput("Entre com o codigo da turma:");
-                    Turma t = controllerTurma.recuperaTurma(strCodigo);
+                    Turma t = null;
+                    try {
+                        t = controllerTurma.recuperaTurma(strCodigo);
+                    } catch (TurmaNaoEncontradaException ex) {
+                        System.out.println("Turma não encontrada!");
+                    }
                     if (t != null) {
                         System.out.println(t.getCodigo() + ":" + t.getCurso().getNome());
                         String strConf = menu.readInput("Deseja realmente remover a turma do cadastro (S/N):");

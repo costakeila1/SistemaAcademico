@@ -2,7 +2,9 @@
 package br.mackenzie.academico.modelo;
 
 import br.mackenzie.academico.dominio.GradeCurricular;
+import br.mackenzie.academico.dominio.ProjetoPedagogico;
 import br.mackenzie.academico.excecao.GradeCurricularNaoEncontradaException;
+import br.mackenzie.academico.excecao.ProjetoPedagogicoNaoEncontradoException;
 import java.util.List;
 
 public interface InterfaceGradeCurricular {
@@ -16,5 +18,7 @@ public interface InterfaceGradeCurricular {
     public void atualizaGradeCurricular(GradeCurricular gradeCurricular);
 
     public void removeGradeCurricular(GradeCurricular gradeCurricular);
+
+    public ProjetoPedagogico recuperaProjetoPedagogico(String nomeCurso) throws ProjetoPedagogicoNaoEncontradoException;
     
 }

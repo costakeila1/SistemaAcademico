@@ -3,6 +3,7 @@ package br.mackenzie.academico.controller;
 
 import br.mackenzie.academico.dominio.Turma;
 import br.mackenzie.academico.excecao.CursoNaoEncontradoException;
+import br.mackenzie.academico.excecao.TurmaNaoEncontradaException;
 import br.mackenzie.academico.modelo.InterfaceTurma;
 import br.mackenzie.academico.modelo.Modelo;
 import java.util.List;
@@ -26,7 +27,7 @@ public class ControllerTurma {
         return iturma.listaTurmas();
     }
 
-    public Turma recuperaTurma(String codigo) {
+    public Turma recuperaTurma(String codigo) throws TurmaNaoEncontradaException {
         return iturma.recuperaTurma(codigo);
     }
 
